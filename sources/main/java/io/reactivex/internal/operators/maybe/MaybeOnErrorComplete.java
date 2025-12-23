@@ -1,0 +1,81 @@
+package io.reactivex.internal.operators.maybe;
+
+import io.reactivex.MaybeObserver;
+import io.reactivex.MaybeSource;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.exceptions.CompositeException;
+import io.reactivex.exceptions.Exceptions;
+import io.reactivex.functions.Predicate;
+import io.reactivex.internal.disposables.DisposableHelper;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes8.dex */
+public final class MaybeOnErrorComplete<T> extends AbstractMaybeWithUpstream<T, T> {
+    final Predicate<? super Throwable> predicate;
+
+    /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+    static final class OnErrorCompleteMaybeObserver<T> implements MaybeObserver<T>, Disposable {
+        final MaybeObserver<? super T> actual;
+
+        /* renamed from: d, reason: collision with root package name */
+        Disposable f43273d;
+        final Predicate<? super Throwable> predicate;
+
+        @Override // io.reactivex.disposables.Disposable
+        public void dispose() {
+            this.f43273d.dispose();
+        }
+
+        @Override // io.reactivex.disposables.Disposable
+        public boolean isDisposed() {
+            return this.f43273d.isDisposed();
+        }
+
+        @Override // io.reactivex.MaybeObserver
+        public void onComplete() {
+            this.actual.onComplete();
+        }
+
+        @Override // io.reactivex.MaybeObserver
+        public void onError(Throwable th) {
+            try {
+                if (this.predicate.test(th)) {
+                    this.actual.onComplete();
+                } else {
+                    this.actual.onError(th);
+                }
+            } catch (Throwable th2) {
+                Exceptions.throwIfFatal(th2);
+                this.actual.onError(new CompositeException(th, th2));
+            }
+        }
+
+        @Override // io.reactivex.MaybeObserver
+        public void onSubscribe(Disposable disposable) {
+            if (DisposableHelper.validate(this.f43273d, disposable)) {
+                this.f43273d = disposable;
+                this.actual.onSubscribe(this);
+            }
+        }
+
+        @Override // io.reactivex.MaybeObserver
+        public void onSuccess(T t5) {
+            this.actual.onSuccess(t5);
+        }
+
+        OnErrorCompleteMaybeObserver(MaybeObserver<? super T> maybeObserver, Predicate<? super Throwable> predicate) {
+            this.actual = maybeObserver;
+            this.predicate = predicate;
+        }
+    }
+
+    @Override // io.reactivex.Maybe
+    protected void subscribeActual(MaybeObserver<? super T> maybeObserver) {
+        this.source.subscribe(new OnErrorCompleteMaybeObserver(maybeObserver, this.predicate));
+    }
+
+    public MaybeOnErrorComplete(MaybeSource<T> maybeSource, Predicate<? super Throwable> predicate) {
+        super(maybeSource);
+        this.predicate = predicate;
+    }
+}

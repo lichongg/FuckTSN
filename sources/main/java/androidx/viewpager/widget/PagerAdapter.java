@@ -1,0 +1,115 @@
+package androidx.viewpager.widget;
+
+import android.database.DataSetObservable;
+import android.database.DataSetObserver;
+import android.os.Parcelable;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes.dex */
+public abstract class PagerAdapter {
+    public static final int POSITION_NONE = -2;
+    public static final int POSITION_UNCHANGED = -1;
+    private final DataSetObservable mObservable = new DataSetObservable();
+    private DataSetObserver mViewPagerObserver;
+
+    public void destroyItem(@NonNull ViewGroup viewGroup, int i6, @NonNull Object obj) {
+        destroyItem((View) viewGroup, i6, obj);
+    }
+
+    @Deprecated
+    public void finishUpdate(@NonNull View view) {
+    }
+
+    public abstract int getCount();
+
+    public int getItemPosition(@NonNull Object obj) {
+        return -1;
+    }
+
+    @Nullable
+    public CharSequence getPageTitle(int i6) {
+        return null;
+    }
+
+    @NonNull
+    public Object instantiateItem(@NonNull ViewGroup viewGroup, int i6) {
+        return instantiateItem((View) viewGroup, i6);
+    }
+
+    public abstract boolean isViewFromObject(@NonNull View view, @NonNull Object obj);
+
+    public void notifyDataSetChanged() {
+        synchronized (this) {
+            try {
+                DataSetObserver dataSetObserver = this.mViewPagerObserver;
+                if (dataSetObserver != null) {
+                    dataSetObserver.onChanged();
+                }
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
+        this.mObservable.notifyChanged();
+    }
+
+    @Nullable
+    public Parcelable saveState() {
+        return null;
+    }
+
+    @Deprecated
+    public void setPrimaryItem(@NonNull View view, int i6, @NonNull Object obj) {
+    }
+
+    void setViewPagerObserver(DataSetObserver dataSetObserver) {
+        synchronized (this) {
+            this.mViewPagerObserver = dataSetObserver;
+        }
+    }
+
+    @Deprecated
+    public void startUpdate(@NonNull View view) {
+    }
+
+    @Deprecated
+    public void destroyItem(@NonNull View view, int i6, @NonNull Object obj) {
+        throw new UnsupportedOperationException("Required method destroyItem was not overridden");
+    }
+
+    public void finishUpdate(@NonNull ViewGroup viewGroup) {
+        finishUpdate((View) viewGroup);
+    }
+
+    public float getPageWidth(int i6) {
+        return 1.0f;
+    }
+
+    @NonNull
+    @Deprecated
+    public Object instantiateItem(@NonNull View view, int i6) {
+        throw new UnsupportedOperationException("Required method instantiateItem was not overridden");
+    }
+
+    public void registerDataSetObserver(@NonNull DataSetObserver dataSetObserver) {
+        this.mObservable.registerObserver(dataSetObserver);
+    }
+
+    public void setPrimaryItem(@NonNull ViewGroup viewGroup, int i6, @NonNull Object obj) {
+        setPrimaryItem((View) viewGroup, i6, obj);
+    }
+
+    public void startUpdate(@NonNull ViewGroup viewGroup) {
+        startUpdate((View) viewGroup);
+    }
+
+    public void unregisterDataSetObserver(@NonNull DataSetObserver dataSetObserver) {
+        this.mObservable.unregisterObserver(dataSetObserver);
+    }
+
+    public void restoreState(@Nullable Parcelable parcelable, @Nullable ClassLoader classLoader) {
+    }
+}

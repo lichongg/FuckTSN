@@ -1,0 +1,12 @@
+package retrofit2.adapter.rxjava;
+
+import retrofit2.c0;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+@Deprecated
+/* loaded from: D:\Downloads\app\classes7.dex */
+public final class HttpException extends retrofit2.HttpException {
+    public HttpException(c0<?> c0Var) {
+        super(c0Var);
+    }
+}

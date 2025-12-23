@@ -1,0 +1,143 @@
+package com.beizi.fusion.tool;
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
+import android.telephony.TelephonyManager;
+import com.stub.StubApp;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes2.dex */
+public class p {
+    public static int a(Context context) {
+        String simOperator;
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService("phone");
+            if (5 == telephonyManager.getSimState() && (simOperator = telephonyManager.getSimOperator()) != null) {
+                if (!simOperator.equals("46000") && !simOperator.equals("46002") && !simOperator.equals("46007")) {
+                    if (simOperator.equals("46001")) {
+                        return 2;
+                    }
+                    if (simOperator.equals("46003")) {
+                        return 3;
+                    }
+                }
+                return 1;
+            }
+            return 0;
+        } catch (Throwable th) {
+            th.printStackTrace();
+            return 0;
+        }
+    }
+
+    public static int b(Context context) {
+        return c(context);
+    }
+
+    public static int c(Context context) {
+        ConnectivityManager connectivityManager;
+        NetworkInfo activeNetworkInfo;
+        if (context == null) {
+            return 5;
+        }
+        try {
+            connectivityManager = (ConnectivityManager) StubApp.getOrigApplicationContext(context.getApplicationContext()).getSystemService("connectivity");
+        } catch (Throwable th) {
+            th.printStackTrace();
+            return 5;
+        }
+        if (connectivityManager != null && (activeNetworkInfo = connectivityManager.getActiveNetworkInfo()) != null) {
+            int type = activeNetworkInfo.getType();
+            if (1 == type) {
+                return 4;
+            }
+            if (type == 0) {
+                int subtype = activeNetworkInfo.getSubtype();
+                String subtypeName = activeNetworkInfo.getSubtypeName();
+                switch (subtype) {
+                    case 1:
+                    case 2:
+                    case 4:
+                    case 7:
+                    case 11:
+                    case 16:
+                        return 6;
+                    case 3:
+                    case 5:
+                    case 6:
+                    case 8:
+                    case 9:
+                    case 10:
+                    case 12:
+                    case 14:
+                    case 15:
+                    case 17:
+                        return 1;
+                    case 13:
+                    case 18:
+                        return 2;
+                    case 19:
+                    default:
+                        if (!subtypeName.equalsIgnoreCase("TD-SCDMA") && !subtypeName.equalsIgnoreCase("WCDMA")) {
+                            if (!subtypeName.equalsIgnoreCase("CDMA2000")) {
+                                return 5;
+                            }
+                        }
+                        return 1;
+                    case 20:
+                        return 3;
+                }
+                th.printStackTrace();
+                return 5;
+            }
+        }
+        return 5;
+    }
+
+    public static String d(Context context) {
+        try {
+            return ((TelephonyManager) StubApp.getOrigApplicationContext(context.getApplicationContext()).getSystemService("phone")).getPhoneType() != 0 ? "1" : "2";
+        } catch (Throwable unused) {
+            int i6 = context.getResources().getConfiguration().screenLayout & 15;
+            return (i6 == 4 || i6 == 3) ? "2" : "1";
+        }
+    }
+
+    public static String b() {
+        try {
+            return Build.MODEL;
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            return "";
+        }
+    }
+
+    public static String d() {
+        try {
+            return Build.MANUFACTURER;
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            return "";
+        }
+    }
+
+    public static String a() {
+        try {
+            return Build.BRAND;
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            return "";
+        }
+    }
+
+    public static String c() {
+        try {
+            return Build.VERSION.SDK_INT + "(" + Build.VERSION.RELEASE + ")";
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            return "";
+        }
+    }
+}

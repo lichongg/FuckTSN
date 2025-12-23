@@ -1,0 +1,43 @@
+package com.kwad.sdk.core.b.a;
+
+import com.kwad.sdk.core.response.model.AdMatrixInfo;
+import org.json.JSONObject;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes6.dex */
+public final class jk implements com.kwad.sdk.core.d<AdMatrixInfo.RotateDegreeInfo> {
+    @Override // com.kwad.sdk.core.d
+    public final /* bridge */ /* synthetic */ void a(AdMatrixInfo.RotateDegreeInfo rotateDegreeInfo, JSONObject jSONObject) {
+        a2(rotateDegreeInfo, jSONObject);
+    }
+
+    @Override // com.kwad.sdk.core.d
+    public final /* bridge */ /* synthetic */ JSONObject b(AdMatrixInfo.RotateDegreeInfo rotateDegreeInfo, JSONObject jSONObject) {
+        return b2(rotateDegreeInfo, jSONObject);
+    }
+
+    /* renamed from: a, reason: avoid collision after fix types in other method */
+    private static void a2(AdMatrixInfo.RotateDegreeInfo rotateDegreeInfo, JSONObject jSONObject) {
+        if (jSONObject == null) {
+            return;
+        }
+        rotateDegreeInfo.rotateDegree = jSONObject.optInt("rotateDegree");
+        rotateDegreeInfo.direction = jSONObject.optInt("direction");
+    }
+
+    /* renamed from: b, reason: avoid collision after fix types in other method */
+    private static JSONObject b2(AdMatrixInfo.RotateDegreeInfo rotateDegreeInfo, JSONObject jSONObject) {
+        if (jSONObject == null) {
+            jSONObject = new JSONObject();
+        }
+        int i6 = rotateDegreeInfo.rotateDegree;
+        if (i6 != 0) {
+            com.kwad.sdk.utils.aa.putValue(jSONObject, "rotateDegree", i6);
+        }
+        int i7 = rotateDegreeInfo.direction;
+        if (i7 != 0) {
+            com.kwad.sdk.utils.aa.putValue(jSONObject, "direction", i7);
+        }
+        return jSONObject;
+    }
+}

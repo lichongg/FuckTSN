@@ -1,0 +1,17 @@
+package io.reactivex.observables;
+
+import io.reactivex.Observable;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes8.dex */
+public abstract class GroupedObservable<K, T> extends Observable<T> {
+    final K key;
+
+    public K getKey() {
+        return this.key;
+    }
+
+    protected GroupedObservable(K k6) {
+        this.key = k6;
+    }
+}

@@ -1,0 +1,28 @@
+package com.google.android.gms.tasks;
+
+import androidx.annotation.NonNull;
+import java.util.concurrent.Executor;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes5.dex */
+final class zzd implements zzq {
+    private final Executor zza;
+    private final Continuation zzb;
+    private final zzw zzc;
+
+    @Override // com.google.android.gms.tasks.zzq
+    public final void zzc() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override // com.google.android.gms.tasks.zzq
+    public final void zzd(@NonNull Task task) {
+        this.zza.execute(new zzc(this, task));
+    }
+
+    public zzd(@NonNull Executor executor, @NonNull Continuation continuation, @NonNull zzw zzwVar) {
+        this.zza = executor;
+        this.zzb = continuation;
+        this.zzc = zzwVar;
+    }
+}

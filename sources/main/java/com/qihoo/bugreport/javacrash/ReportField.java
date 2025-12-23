@@ -1,0 +1,38 @@
+package com.qihoo.bugreport.javacrash;
+
+/* loaded from: D:\Downloads\app\classes10.dex */
+public enum ReportField {
+    t,
+    cpv,
+    mpv,
+    st,
+    ct,
+    m1,
+    m,
+    ab,
+    vm,
+    k,
+    o,
+    sv,
+    l,
+    cd,
+    pn,
+    vn,
+    vc,
+    amf,
+    s,
+    r,
+    ak,
+    aid,
+    me,
+    et,
+    ec,
+    em,
+    ep,
+    ed,
+    epd,
+    crd,
+    rt,
+    sc,
+    jc
+}

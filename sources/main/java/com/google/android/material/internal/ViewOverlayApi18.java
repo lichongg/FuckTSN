@@ -1,0 +1,28 @@
+package com.google.android.material.internal;
+
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.ViewOverlay;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+@RequiresApi(18)
+/* loaded from: D:\Downloads\app\classes5.dex */
+class ViewOverlayApi18 implements ViewOverlayImpl {
+    private final ViewOverlay viewOverlay;
+
+    @Override // com.google.android.material.internal.ViewOverlayImpl
+    public void add(@NonNull Drawable drawable) {
+        this.viewOverlay.add(drawable);
+    }
+
+    @Override // com.google.android.material.internal.ViewOverlayImpl
+    public void remove(@NonNull Drawable drawable) {
+        this.viewOverlay.remove(drawable);
+    }
+
+    ViewOverlayApi18(@NonNull View view) {
+        this.viewOverlay = view.getOverlay();
+    }
+}

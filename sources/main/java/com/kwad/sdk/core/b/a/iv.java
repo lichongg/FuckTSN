@@ -1,0 +1,35 @@
+package com.kwad.sdk.core.b.a;
+
+import com.kwad.sdk.core.response.model.AdMatrixInfo;
+import org.json.JSONObject;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes6.dex */
+public final class iv implements com.kwad.sdk.core.d<AdMatrixInfo.PreLandingPageTKInfo> {
+    @Override // com.kwad.sdk.core.d
+    public final /* bridge */ /* synthetic */ void a(AdMatrixInfo.PreLandingPageTKInfo preLandingPageTKInfo, JSONObject jSONObject) {
+        a2(preLandingPageTKInfo, jSONObject);
+    }
+
+    @Override // com.kwad.sdk.core.d
+    public final /* bridge */ /* synthetic */ JSONObject b(AdMatrixInfo.PreLandingPageTKInfo preLandingPageTKInfo, JSONObject jSONObject) {
+        return b2(preLandingPageTKInfo, jSONObject);
+    }
+
+    /* renamed from: a, reason: avoid collision after fix types in other method */
+    private static void a2(AdMatrixInfo.PreLandingPageTKInfo preLandingPageTKInfo, JSONObject jSONObject) {
+        if (jSONObject == null) {
+            return;
+        }
+        preLandingPageTKInfo.preLandingPageShowType = jSONObject.optInt("preLandingPageShowType", new Integer("1").intValue());
+    }
+
+    /* renamed from: b, reason: avoid collision after fix types in other method */
+    private static JSONObject b2(AdMatrixInfo.PreLandingPageTKInfo preLandingPageTKInfo, JSONObject jSONObject) {
+        if (jSONObject == null) {
+            jSONObject = new JSONObject();
+        }
+        com.kwad.sdk.utils.aa.putValue(jSONObject, "preLandingPageShowType", preLandingPageTKInfo.preLandingPageShowType);
+        return jSONObject;
+    }
+}

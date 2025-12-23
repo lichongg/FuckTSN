@@ -1,0 +1,75 @@
+package com.bytedance.msdk.tl;
+
+import android.content.Context;
+import android.content.pm.Signature;
+import com.baidu.mobads.sdk.internal.by;
+import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+/* loaded from: D:\Downloads\app\classes3.dex */
+public class oq {
+
+    /* renamed from: j, reason: collision with root package name */
+    private static HashMap<String, ArrayList<String>> f25227j = new HashMap<>();
+
+    public static ArrayList<String> j(Context context, String str) {
+        ArrayList<String> arrayList = null;
+        if (context != null && str != null) {
+            String packageName = context.getPackageName();
+            if (packageName == null) {
+                return null;
+            }
+            if (f25227j.get(str) != null) {
+                return f25227j.get(str);
+            }
+            arrayList = new ArrayList<>();
+            try {
+                for (Signature signature : xt(context, packageName)) {
+                    String str2 = "error!";
+                    if (by.f10823a.equals(str)) {
+                        str2 = j(signature, by.f10823a);
+                    } else if ("SHA1".equals(str)) {
+                        str2 = j(signature, "SHA1");
+                    } else if ("SHA256".equals(str)) {
+                        str2 = j(signature, "SHA256");
+                    }
+                    arrayList.add(str2);
+                }
+            } catch (Exception e6) {
+                com.bytedance.msdk.j.up.cw.cw(e6.toString());
+            }
+            f25227j.put(str, arrayList);
+        }
+        return arrayList;
+    }
+
+    private static Signature[] xt(Context context, String str) {
+        try {
+            return context.getPackageManager().getPackageInfo(str, 64).signatures;
+        } catch (Exception e6) {
+            com.bytedance.msdk.j.up.cw.cw(e6.toString());
+            return null;
+        }
+    }
+
+    private static String j(Signature signature, String str) {
+        byte[] byteArray = signature.toByteArray();
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance(str);
+            if (messageDigest == null) {
+                return "error!";
+            }
+            byte[] digest = messageDigest.digest(byteArray);
+            StringBuilder sb = new StringBuilder();
+            for (byte b6 : digest) {
+                sb.append(Integer.toHexString((b6 & 255) | 256).substring(1, 3).toUpperCase());
+                sb.append(":");
+            }
+            return sb.substring(0, sb.length() - 1).toString();
+        } catch (Exception e6) {
+            com.bytedance.msdk.j.up.cw.cw(e6.toString());
+            return "error!";
+        }
+    }
+}

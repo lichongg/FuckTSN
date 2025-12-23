@@ -1,0 +1,174 @@
+package com.amap.api.col.s;
+
+import android.content.Context;
+import android.text.TextUtils;
+import com.amap.api.col.s.c1;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes2.dex */
+public final class x1 {
+
+    /* renamed from: b, reason: collision with root package name */
+    private static final String f8613b = j1.t("SRFZHZUVZT3BOa0ZiemZRQQ");
+
+    /* renamed from: c, reason: collision with root package name */
+    private static final String f8614c = j1.t("FbGJzX3Nkaw");
+
+    /* renamed from: d, reason: collision with root package name */
+    private static final String f8615d = j1.t("SWjJuYVh2eEMwSzVmNklFSmh0UXpVb2xtOVM4eU9Ua3E");
+
+    /* renamed from: e, reason: collision with root package name */
+    private static final String f8616e = j1.t("FQU5EU0RLMTA");
+
+    /* renamed from: f, reason: collision with root package name */
+    private static final String f8617f = j1.t("FMTAw");
+
+    /* renamed from: g, reason: collision with root package name */
+    private static boolean f8618g = false;
+
+    /* renamed from: a, reason: collision with root package name */
+    private String f8619a = "";
+
+    /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+    final class a implements c1.c {
+
+        /* renamed from: a, reason: collision with root package name */
+        private x1 f8620a = new x1();
+
+        @Override // com.amap.api.col.s.c1.c
+        public final dz a(byte[] bArr, Map<String, String> map) {
+            return new t2(bArr, map);
+        }
+
+        @Override // com.amap.api.col.s.c1.c
+        public final Map<String, String> b() {
+            return this.f8620a.d();
+        }
+
+        @Override // com.amap.api.col.s.c1.c
+        public final String a() {
+            return x1.e();
+        }
+
+        @Override // com.amap.api.col.s.c1.c
+        public final String b(String str, String str2, String str3, String str4) {
+            return this.f8620a.c(str, str2, str3, str4);
+        }
+
+        a() {
+        }
+
+        @Override // com.amap.api.col.s.c1.c
+        public final String a(Context context, String str) {
+            return x1.b(context, str);
+        }
+    }
+
+    public final synchronized Map<String, String> d() {
+        if (f8618g) {
+            return null;
+        }
+        f8618g = true;
+        HashMap hashMap = new HashMap();
+        hashMap.put(j1.t("FZW50"), j1.t("FMg"));
+        StringBuilder sb = new StringBuilder();
+        sb.append(j1.t("SY2hhbm5lbD0"));
+        String str = f8614c;
+        sb.append(str);
+        sb.append(j1.t("SJmRpdj0"));
+        String str2 = f8616e;
+        sb.append(str2);
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(str);
+        stringBuffer.append(str2);
+        stringBuffer.append(j1.t("FQA"));
+        stringBuffer.append(f8615d);
+        String d6 = a2.d(stringBuffer.toString());
+        sb.append(j1.t("FJnNpZ249"));
+        sb.append(d6.toUpperCase(Locale.US));
+        sb.append(j1.t("SJm91dHB1dD1qc29u") + "\u0000");
+        hashMap.put(j1.t("FaW4"), v1.a(q2.a(sb.toString().getBytes(), f8613b.getBytes())));
+        hashMap.put(j1.t("Sa2V5dA"), f8617f);
+        return hashMap;
+    }
+
+    public static c1.c a() {
+        return new a();
+    }
+
+    public static String b(Context context, String str) {
+        try {
+            JSONObject jSONObject = new JSONObject(str);
+            if (jSONObject.optInt(j1.t("UY29kZQ")) != 1) {
+                return "";
+            }
+            String optString = new JSONObject(jSONObject.optString(j1.t("FZGF0YQ"))).optString(j1.t("FYWRpdQ"));
+            if (TextUtils.isEmpty(optString)) {
+                return "";
+            }
+            y1.b(optString);
+            t1.a(context).c(optString);
+            return optString;
+        } catch (JSONException e6) {
+            e6.printStackTrace();
+            return "";
+        }
+    }
+
+    private String f() {
+        if (!TextUtils.isEmpty(this.f8619a)) {
+            return this.f8619a;
+        }
+        String a6 = d1.a("TUpJaVFGNk5LXHtSX1ZwQlRiV1VVZmtYWU1haV1hYWHCiXJtZcKLdmp8wpFewo1/wphwwoFzZmR8aWp6X2k6XsKDwoF+WGbChGdAScKLwoVXfmNxYEvCjcKLSG7CjGNvwoZtVFZ7WMKXYMKfwo5dZcKHfzZXUG85X0hNOVJrb2U8ZlJGW8KCe8KOV8KQWllrcGrCjcKIT25lUHPCicKGVsKKeG5fwp56XsKbc8KJbUVYR0pqU09gfE5/WT5YeHNAwoDCh1Z4V8KQT3JQYmxQbcKYwpFxdG/Ci3rCmMKQwop+YVbCmWFxwpxBdW07Zjp/ODlAbcKEY1pQwoJowohbV1VmV1laWmtcYGbClXfCk2NvesKdwohdWFnCol/CjWTCmMKicG1ENnAvPFtpcXtfclhfXsKAwolgRWNbS29OwpFafV3CkMKLTcKCwolrU3DCmGnCmX9wdsKPcXDCg3LCnFpGcDVTeTxNWW07bXJePVRfQn3ChGNraFhbwpNcwpXChMKNaFVjeVF8wojChm9YbmvChGDCmHvChGVQWjo0Z3o9djleOztWcVxSfWE9woLChkZdcGTCgVzCjMKUVE12wpV5bcKVwprCnntZworCgsKfwpHCksKnwpHClURURW9YaDtwXU1bck5YX3hSVFZUYlxKWFlua1xeYm9jU8KDa3ZrwpZ5am9Za3jCknR3fA");
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i6 = 0; i6 < a6.length(); i6++) {
+            stringBuffer.append((char) (a6.charAt(i6) - (i6 % 48)));
+        }
+        String stringBuffer2 = stringBuffer.toString();
+        StringBuffer stringBuffer3 = new StringBuffer();
+        for (int i7 = 0; i7 < stringBuffer2.length() / 2; i7++) {
+            stringBuffer3.append((char) ((stringBuffer2.charAt(i7) + stringBuffer2.charAt((stringBuffer2.length() - 1) - i7)) / 2));
+        }
+        String stringBuffer4 = stringBuffer3.toString();
+        this.f8619a = stringBuffer4;
+        return stringBuffer4;
+    }
+
+    public final String c(String str, String str2, String str3, String str4) {
+        JSONObject jSONObject = new JSONObject();
+        try {
+            jSONObject.put(j1.t("LdGlk"), str);
+            jSONObject.put(j1.t("FZGl1"), str2);
+            jSONObject.put(j1.t("AZGl1Mg"), str3);
+            jSONObject.put(j1.t("EZGl1Mw"), str4);
+        } catch (Throwable th) {
+            th.printStackTrace();
+        }
+        String jSONObject2 = jSONObject.toString();
+        if (TextUtils.isEmpty(jSONObject2)) {
+            return null;
+        }
+        String b6 = a2.b();
+        if (!TextUtils.isEmpty(b6)) {
+            String a6 = v1.a(q2.a((jSONObject2 + "\u0000").getBytes(), b6.getBytes()));
+            if (!TextUtils.isEmpty(a6)) {
+                try {
+                    return j1.t("Fa2V5PQ") + URLEncoder.encode(v1.a(z1.b(b6.getBytes("utf-8"), z1.a(f())))) + j1.t("SJmRhdGE9") + URLEncoder.encode(a6);
+                } catch (Throwable th2) {
+                    th2.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    public static String e() {
+        return y1.a();
+    }
+}

@@ -1,0 +1,101 @@
+package com.huawei.hms.hatool;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes5.dex */
+public class b1 {
+
+    /* renamed from: a, reason: collision with root package name */
+    private static final int[] f33508a = {1, 6, 7, 9};
+
+    /* renamed from: b, reason: collision with root package name */
+    private static final int[] f33509b = {0, 2, 3, 4, 5};
+
+    /* renamed from: c, reason: collision with root package name */
+    private static final Map<Integer, String> f33510c = new a();
+
+    private static boolean c(NetworkInfo networkInfo) {
+        return (networkInfo == null || Arrays.binarySearch(f33509b, networkInfo.getType()) == -1) ? false : true;
+    }
+
+    private static boolean f(NetworkInfo networkInfo) {
+        return (networkInfo == null || Arrays.binarySearch(f33508a, networkInfo.getType()) == -1) ? false : true;
+    }
+
+    /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+    static class a extends HashMap<Integer, String> {
+        a() {
+            put(1, "2G");
+            put(2, "2G");
+            put(4, "2G");
+            put(7, "2G");
+            put(11, "2G");
+            put(3, "3G");
+            put(8, "3G");
+            put(9, "3G");
+            put(10, "3G");
+            put(15, "3G");
+            put(5, "3G");
+            put(6, "3G");
+            put(12, "3G");
+            put(14, "3G");
+            put(13, "4G");
+            if (Build.VERSION.SDK_INT >= 29) {
+                put(20, "5G");
+            }
+        }
+    }
+
+    @SuppressLint({"MissingPermission"})
+    private static NetworkInfo a(Context context) {
+        try {
+            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService("connectivity");
+            if (connectivityManager != null) {
+                return connectivityManager.getActiveNetworkInfo();
+            }
+            return null;
+        } catch (Throwable th) {
+            j1.e("hmsSdk", "cannot get network state, ensure permission android.permission.ACCESS_NETWORK_STATE in the manifest: " + th.getMessage());
+            return null;
+        }
+    }
+
+    private static String b(int i6) {
+        Map<Integer, String> map = f33510c;
+        String str = map.containsKey(Integer.valueOf(i6)) ? map.get(Integer.valueOf(i6)) : "unknown";
+        return (!"unknown".equals(str) || Build.VERSION.SDK_INT < 25) ? str : i6 != 16 ? i6 != 17 ? "unknown" : "3G" : "2G";
+    }
+
+    public static String d(Context context) {
+        NetworkInfo a6;
+        if (context == null) {
+            return "unknown";
+        }
+        try {
+            a6 = a(context);
+        } catch (Throwable unused) {
+        }
+        if (!e(a6)) {
+            return "none";
+        }
+        if (f(a6)) {
+            return "WIFI";
+        }
+        if (c(a6)) {
+            return b(a6.getSubtype());
+        }
+        return "unknown";
+    }
+
+    private static boolean e(NetworkInfo networkInfo) {
+        return networkInfo != null && networkInfo.isConnected();
+    }
+}

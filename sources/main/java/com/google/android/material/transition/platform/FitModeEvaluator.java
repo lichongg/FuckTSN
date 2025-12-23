@@ -1,0 +1,15 @@
+package com.google.android.material.transition.platform;
+
+import android.graphics.RectF;
+import androidx.annotation.RequiresApi;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+@RequiresApi(21)
+/* loaded from: D:\Downloads\app\classes5.dex */
+interface FitModeEvaluator {
+    void applyMask(RectF rectF, float f6, FitModeResult fitModeResult);
+
+    FitModeResult evaluate(float f6, float f7, float f8, float f9, float f10, float f11, float f12);
+
+    boolean shouldMaskStartBounds(FitModeResult fitModeResult);
+}

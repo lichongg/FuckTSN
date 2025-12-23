@@ -1,0 +1,20 @@
+package com.google.android.gms.common.api.internal;
+
+import android.app.Activity;
+import androidx.annotation.NonNull;
+import com.google.android.gms.common.annotation.KeepForSdk;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+@KeepForSdk
+/* loaded from: D:\Downloads\app\classes5.dex */
+public abstract class ActivityLifecycleObserver {
+    @NonNull
+    @KeepForSdk
+    public abstract ActivityLifecycleObserver onStopCallOnce(@NonNull Runnable runnable);
+
+    @NonNull
+    @KeepForSdk
+    public static final ActivityLifecycleObserver of(@NonNull Activity activity) {
+        return new zab(zaa.zaa(activity));
+    }
+}

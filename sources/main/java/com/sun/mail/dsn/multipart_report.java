@@ -1,0 +1,50 @@
+package com.sun.mail.dsn;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import javax.activation.ActivationDataFlavor;
+import javax.activation.DataContentHandler;
+import javax.activation.DataSource;
+import javax.mail.MessagingException;
+import myjava.awt.datatransfer.DataFlavor;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes6.dex */
+public class multipart_report implements DataContentHandler {
+    private ActivationDataFlavor myDF = new ActivationDataFlavor(MultipartReport.class, "multipart/report", "Multipart Report");
+
+    @Override // javax.activation.DataContentHandler
+    public Object getContent(DataSource dataSource) throws IOException {
+        try {
+            return new MultipartReport(dataSource);
+        } catch (MessagingException e6) {
+            IOException iOException = new IOException("Exception while constructing MultipartReport");
+            iOException.initCause(e6);
+            throw iOException;
+        }
+    }
+
+    @Override // javax.activation.DataContentHandler
+    public Object getTransferData(DataFlavor dataFlavor, DataSource dataSource) throws IOException {
+        if (this.myDF.equals(dataFlavor)) {
+            return getContent(dataSource);
+        }
+        return null;
+    }
+
+    @Override // javax.activation.DataContentHandler
+    public DataFlavor[] getTransferDataFlavors() {
+        return new DataFlavor[]{this.myDF};
+    }
+
+    @Override // javax.activation.DataContentHandler
+    public void writeTo(Object obj, String str, OutputStream outputStream) throws IOException {
+        if (obj instanceof MultipartReport) {
+            try {
+                ((MultipartReport) obj).writeTo(outputStream);
+            } catch (MessagingException e6) {
+                throw new IOException(e6.toString());
+            }
+        }
+    }
+}

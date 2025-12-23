@@ -1,0 +1,55 @@
+package xyz.adscope.common.v2.dev.oaid.sm.oaid.impl;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
+import java.util.Objects;
+import xyz.adscope.common.v2.dev.oaid.sm.oaid.IGetter;
+import xyz.adscope.common.v2.dev.oaid.sm.oaid.IOAID;
+import xyz.adscope.common.v2.dev.oaid.sm.oaid.OAIDException;
+import xyz.adscope.common.v2.dev.oaid.sm.oaid.OAIDLog;
+import xyz.adscope.common.v2.dev.oaid.sm.oaid.OAIDRom;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes9.dex */
+class VivoImpl implements IOAID {
+    private final Context context;
+
+    @Override // xyz.adscope.common.v2.dev.oaid.sm.oaid.IOAID
+    public void doGet(IGetter iGetter) {
+        if (this.context == null || iGetter == null) {
+            return;
+        }
+        try {
+            Cursor query = this.context.getContentResolver().query(Uri.parse("content://com.vivo.vms.IdProvider/IdentifierId/OAID"), null, null, null, null);
+            try {
+                Objects.requireNonNull(query);
+                query.moveToFirst();
+                String string = query.getString(query.getColumnIndex("value"));
+                if (string == null || string.length() == 0) {
+                    throw new OAIDException("OAID query failed");
+                }
+                OAIDLog.print("OAID query success: " + string);
+                iGetter.onOAIDGetComplete(string);
+                query.close();
+            } finally {
+            }
+        } catch (Exception e6) {
+            OAIDLog.print(e6);
+            iGetter.onOAIDGetError(e6);
+        }
+    }
+
+    @Override // xyz.adscope.common.v2.dev.oaid.sm.oaid.IOAID
+    public boolean supported() {
+        if (Build.VERSION.SDK_INT < 28) {
+            return false;
+        }
+        return OAIDRom.sysProperty("persist.sys.identifierid.supported", "0").equals("1");
+    }
+
+    public VivoImpl(Context context) {
+        this.context = context;
+    }
+}

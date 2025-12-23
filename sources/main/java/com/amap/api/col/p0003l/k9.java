@@ -1,0 +1,18 @@
+package com.amap.api.col.p0003l;
+
+import com.amap.api.services.geocoder.GeocodeSearch;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes2.dex */
+public final class k9 extends j9 {
+
+    /* renamed from: k, reason: collision with root package name */
+    public long f6697k;
+
+    /* renamed from: l, reason: collision with root package name */
+    public byte f6698l;
+
+    public k9() {
+        super(GeocodeSearch.GPS);
+    }
+}

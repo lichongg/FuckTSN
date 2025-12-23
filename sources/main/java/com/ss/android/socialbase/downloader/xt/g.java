@@ -1,0 +1,9 @@
+package com.ss.android.socialbase.downloader.xt;
+
+/* loaded from: D:\Downloads\app\classes6.dex */
+public enum g {
+    DELAY_RETRY_NONE,
+    DELAY_RETRY_WAITING,
+    DELAY_RETRY_DOWNLOADING,
+    DELAY_RETRY_DOWNLOADED
+}

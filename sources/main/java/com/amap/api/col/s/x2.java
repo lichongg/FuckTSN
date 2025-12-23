@@ -1,0 +1,1025 @@
+package com.amap.api.col.s;
+
+import android.content.Context;
+import android.os.Build;
+import android.os.SystemClock;
+import android.text.TextUtils;
+import com.amap.api.col.s.dz;
+import com.amap.api.col.s.u2;
+import com.amap.api.col.s.y0;
+import com.amap.api.services.core.AMapException;
+import com.huawei.hms.framework.common.ContainerUtils;
+import com.umeng.analytics.pro.o;
+import java.io.IOException;
+import java.io.InterruptedIOException;
+import java.lang.ref.SoftReference;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.Proxy;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.net.UnknownHostException;
+import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.Vector;
+import java.util.concurrent.atomic.AtomicInteger;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLHandshakeException;
+import javax.net.ssl.SSLKeyException;
+import javax.net.ssl.SSLPeerUnverifiedException;
+import javax.net.ssl.SSLProtocolException;
+import javax.net.ssl.SSLSession;
+import org.apache.http.conn.ConnectTimeoutException;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes2.dex */
+public final class x2 {
+
+    /* renamed from: t, reason: collision with root package name */
+    private static SoftReference<SSLContext> f8621t;
+
+    /* renamed from: u, reason: collision with root package name */
+    private static SoftReference<y2> f8622u;
+
+    /* renamed from: a, reason: collision with root package name */
+    private boolean f8623a;
+
+    /* renamed from: b, reason: collision with root package name */
+    private SSLContext f8624b;
+
+    /* renamed from: c, reason: collision with root package name */
+    private Proxy f8625c;
+
+    /* renamed from: g, reason: collision with root package name */
+    private String f8629g;
+
+    /* renamed from: h, reason: collision with root package name */
+    private u2.a f8630h;
+
+    /* renamed from: i, reason: collision with root package name */
+    private d f8631i;
+
+    /* renamed from: k, reason: collision with root package name */
+    private boolean f8633k;
+
+    /* renamed from: l, reason: collision with root package name */
+    private String f8634l;
+
+    /* renamed from: m, reason: collision with root package name */
+    private String f8635m;
+
+    /* renamed from: d, reason: collision with root package name */
+    private volatile boolean f8626d = false;
+
+    /* renamed from: e, reason: collision with root package name */
+    private long f8627e = -1;
+
+    /* renamed from: f, reason: collision with root package name */
+    private long f8628f = 0;
+
+    /* renamed from: j, reason: collision with root package name */
+    private String f8632j = "";
+
+    /* renamed from: n, reason: collision with root package name */
+    private boolean f8636n = false;
+
+    /* renamed from: o, reason: collision with root package name */
+    private boolean f8637o = false;
+
+    /* renamed from: p, reason: collision with root package name */
+    private String f8638p = "";
+
+    /* renamed from: q, reason: collision with root package name */
+    private String f8639q = "";
+
+    /* renamed from: r, reason: collision with root package name */
+    private String f8640r = "";
+
+    /* renamed from: s, reason: collision with root package name */
+    private f f8641s = new f();
+
+    /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+    public static class a implements Cloneable, Comparable {
+
+        /* renamed from: a, reason: collision with root package name */
+        public int f8642a;
+
+        /* renamed from: b, reason: collision with root package name */
+        public String f8643b;
+
+        /* renamed from: c, reason: collision with root package name */
+        public String f8644c;
+
+        /* renamed from: d, reason: collision with root package name */
+        public String f8645d;
+
+        /* renamed from: e, reason: collision with root package name */
+        public String f8646e;
+
+        /* renamed from: f, reason: collision with root package name */
+        public int f8647f;
+
+        /* renamed from: g, reason: collision with root package name */
+        public int f8648g;
+
+        /* renamed from: h, reason: collision with root package name */
+        public int f8649h;
+
+        /* renamed from: i, reason: collision with root package name */
+        public long f8650i;
+
+        /* renamed from: j, reason: collision with root package name */
+        public volatile AtomicInteger f8651j = new AtomicInteger(1);
+
+        public final String b() {
+            String str;
+            String str2;
+            String str3;
+            String str4;
+            try {
+                String str5 = this.f8647f + "#";
+                if (TextUtils.isEmpty(this.f8646e)) {
+                    str = str5 + "-#";
+                } else {
+                    str = str5 + this.f8646e + "#";
+                }
+                String str6 = (str + this.f8649h + "#") + this.f8651j + "#";
+                if (TextUtils.isEmpty(this.f8643b)) {
+                    str2 = str6 + "-#";
+                } else {
+                    str2 = str6 + this.f8643b + "#";
+                }
+                if (this.f8647f == 1) {
+                    str3 = str2 + this.f8645d + "#";
+                } else {
+                    str3 = str2 + "-#";
+                }
+                if (this.f8647f == 1) {
+                    str4 = str3 + this.f8650i + "#";
+                } else {
+                    str4 = str3 + "-#";
+                }
+                String f6 = d1.f(q2.a(((str4 + this.f8644c + "#") + this.f8648g).getBytes(), "YXBtX25ldHdvcmtf".getBytes()));
+                x2.i();
+                return f6;
+            } catch (Exception unused) {
+                return null;
+            }
+        }
+
+        @Override // java.lang.Comparable
+        public final int compareTo(Object obj) {
+            return this.f8642a - ((a) obj).f8642a;
+        }
+
+        public a(c cVar) {
+            this.f8643b = cVar.f8656c;
+            this.f8644c = cVar.f8658e;
+            this.f8646e = cVar.f8657d;
+            this.f8647f = cVar.f8666m;
+            this.f8648g = cVar.f8667n;
+            this.f8649h = cVar.f8655b.a();
+            this.f8645d = cVar.f8654a;
+            this.f8650i = cVar.f8659f;
+            if (this.f8647f == 10) {
+                this.f8642a = 0;
+            }
+        }
+
+        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        public final a clone() {
+            try {
+                return (a) super.clone();
+            } catch (CloneNotSupportedException unused) {
+                return null;
+            }
+        }
+    }
+
+    /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+    public static class c implements Cloneable {
+
+        /* renamed from: a, reason: collision with root package name */
+        public String f8654a = "";
+
+        /* renamed from: b, reason: collision with root package name */
+        public dz.b f8655b = dz.b.FIRST_NONDEGRADE;
+
+        /* renamed from: c, reason: collision with root package name */
+        public String f8656c = "";
+
+        /* renamed from: d, reason: collision with root package name */
+        public String f8657d = "";
+
+        /* renamed from: e, reason: collision with root package name */
+        public String f8658e = "";
+
+        /* renamed from: f, reason: collision with root package name */
+        public long f8659f = 0;
+
+        /* renamed from: g, reason: collision with root package name */
+        public long f8660g = 0;
+
+        /* renamed from: h, reason: collision with root package name */
+        public long f8661h = 0;
+
+        /* renamed from: i, reason: collision with root package name */
+        public long f8662i = 0;
+
+        /* renamed from: j, reason: collision with root package name */
+        public long f8663j = 0;
+
+        /* renamed from: k, reason: collision with root package name */
+        public String f8664k = "-";
+
+        /* renamed from: l, reason: collision with root package name */
+        public String f8665l = "-";
+
+        /* renamed from: m, reason: collision with root package name */
+        public int f8666m = 0;
+
+        /* renamed from: n, reason: collision with root package name */
+        public int f8667n = 0;
+
+        protected final String b() {
+            String str;
+            String str2;
+            if (TextUtils.isEmpty(this.f8656c)) {
+                str = "-#";
+            } else {
+                str = this.f8656c + "#";
+            }
+            if (TextUtils.isEmpty(this.f8657d)) {
+                str2 = str + "-#";
+            } else {
+                str2 = str + this.f8657d + "#";
+            }
+            String f6 = d1.f(q2.a(((((str2 + this.f8655b.a() + "#") + this.f8661h + "#") + this.f8663j + "#") + this.f8659f).getBytes(), "YXBtX25ldHdvcmtf".getBytes()));
+            x2.i();
+            return f6;
+        }
+
+        public final String toString() {
+            return "RequestInfo{csid='" + this.f8654a + "', degradeType=" + this.f8655b + ", serverIp='" + this.f8656c + "', path='" + this.f8657d + "', hostname='" + this.f8658e + "', totalTime=" + this.f8659f + ", DNSTime=" + this.f8660g + ", connectionTime=" + this.f8661h + ", writeTime=" + this.f8662i + ", readTime=" + this.f8663j + ", serverTime='" + this.f8664k + "', datasize='" + this.f8665l + "', errorcode=" + this.f8666m + ", errorcodeSub=" + this.f8667n + '}';
+        }
+
+        /* JADX INFO: Access modifiers changed from: protected */
+        /* renamed from: a, reason: merged with bridge method [inline-methods] */
+        public final c clone() {
+            try {
+                return (c) super.clone();
+            } catch (CloneNotSupportedException unused) {
+                return null;
+            }
+        }
+    }
+
+    /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+    private static class e implements HostnameVerifier {
+
+        /* renamed from: a, reason: collision with root package name */
+        private String f8670a;
+
+        /* renamed from: b, reason: collision with root package name */
+        private String f8671b;
+
+        private e() {
+        }
+
+        /* synthetic */ e(byte b6) {
+            this();
+        }
+
+        public final String a() {
+            return this.f8671b;
+        }
+
+        public final void b(String str) {
+            String[] split;
+            if (TextUtils.isEmpty(this.f8670a) || !str.contains(":") || (split = str.split(":")) == null || split.length <= 0) {
+                this.f8670a = str;
+            } else {
+                this.f8670a = split[0];
+            }
+        }
+
+        public final void c(String str) {
+            this.f8671b = str;
+        }
+
+        @Override // javax.net.ssl.HostnameVerifier
+        public final boolean verify(String str, SSLSession sSLSession) {
+            HostnameVerifier defaultHostnameVerifier = HttpsURLConnection.getDefaultHostnameVerifier();
+            if (!TextUtils.isEmpty(this.f8670a)) {
+                return this.f8670a.equals(str);
+            }
+            if (!TextUtils.isEmpty(this.f8671b)) {
+                return defaultHostnameVerifier.verify(this.f8671b, sSLSession);
+            }
+            return defaultHostnameVerifier.verify(str, sSLSession);
+        }
+    }
+
+    /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+    class f {
+
+        /* renamed from: a, reason: collision with root package name */
+        long f8672a = 0;
+
+        /* renamed from: b, reason: collision with root package name */
+        long f8673b = 0;
+
+        /* renamed from: c, reason: collision with root package name */
+        c f8674c = new c();
+
+        /* renamed from: d, reason: collision with root package name */
+        a f8675d;
+
+        /* renamed from: e, reason: collision with root package name */
+        c f8676e;
+
+        /* renamed from: f, reason: collision with root package name */
+        String f8677f;
+
+        /* renamed from: g, reason: collision with root package name */
+        URL f8678g;
+
+        f() {
+        }
+
+        public final void a() {
+            this.f8674c.f8661h = SystemClock.elapsedRealtime() - this.f8673b;
+        }
+
+        public final void b(int i6) {
+            "----errorcode-----".concat(String.valueOf(i6));
+            x2.i();
+            try {
+                this.f8674c.f8659f = SystemClock.elapsedRealtime() - this.f8672a;
+                c cVar = this.f8674c;
+                cVar.f8666m = i6;
+                if (cVar.f8655b.e()) {
+                    y0.r(false, this.f8674c.f8658e);
+                }
+                boolean l6 = x2.this.l(this.f8674c.f8658e);
+                if (l6) {
+                    if (x2.this.f8637o && !TextUtils.isEmpty(x2.this.f8635m) && this.f8674c.f8655b.b()) {
+                        y0.F();
+                    }
+                    if (this.f8674c.f8655b.c()) {
+                        y0.r(this.f8674c.f8655b.c(), this.f8674c.f8658e);
+                    }
+                    y0.H(this.f8676e);
+                    y0.q(false, this.f8675d);
+                    y0.B(this.f8674c);
+                }
+                y0.p(this.f8678g.toString(), this.f8674c.f8655b.c(), true, l6);
+                this.f8674c.toString();
+                x2.i();
+            } catch (Throwable unused) {
+            }
+        }
+
+        public final void c(long j6) {
+            this.f8674c.f8665l = new DecimalFormat("0.00").format(j6 / 1024.0f);
+        }
+
+        public final void d(dz dzVar, URL url) {
+            this.f8678g = url;
+            this.f8674c.f8657d = url.getPath();
+            this.f8674c.f8658e = url.getHost();
+            if (!TextUtils.isEmpty(x2.this.f8635m) && dzVar.B().b()) {
+                c cVar = this.f8674c;
+                cVar.f8656c = cVar.f8658e.replace("[", "").replace("]", "");
+                this.f8674c.f8658e = x2.this.f8635m;
+            }
+            if (dzVar.B().b()) {
+                dzVar.n(this.f8674c.f8658e);
+            }
+            if (dzVar.B().d()) {
+                this.f8677f = dzVar.E();
+            }
+        }
+
+        public final void e(b3 b3Var) {
+            c clone;
+            try {
+                this.f8674c.f8659f = SystemClock.elapsedRealtime() - this.f8672a;
+                if (b3Var != null) {
+                    b3Var.f7881f = this.f8674c.f8655b.c();
+                }
+                if (this.f8674c.f8655b.b()) {
+                    c cVar = this.f8674c;
+                    if (cVar.f8659f > 10000) {
+                        y0.r(false, cVar.f8658e);
+                    }
+                }
+                if (this.f8674c.f8655b.d()) {
+                    y0.r(false, this.f8677f);
+                }
+                boolean l6 = x2.this.l(this.f8674c.f8658e);
+                if (l6) {
+                    y0.H(this.f8674c);
+                    y0.q(true, this.f8675d);
+                    c cVar2 = this.f8674c;
+                    if (cVar2.f8659f > y0.f8725s && (clone = cVar2.clone()) != null) {
+                        clone.f8666m = 1;
+                        y0.B(clone);
+                        clone.toString();
+                        x2.i();
+                    }
+                }
+                y0.p(this.f8678g.toString(), this.f8674c.f8655b.c(), false, l6);
+                this.f8674c.toString();
+                x2.i();
+            } catch (Throwable unused) {
+            }
+        }
+
+        public final void f() {
+            this.f8674c.f8662i = SystemClock.elapsedRealtime() - this.f8673b;
+        }
+
+        public final void g(int i6) {
+            this.f8674c.f8667n = i6;
+        }
+
+        public final void h() {
+            this.f8674c.f8663j = SystemClock.elapsedRealtime() - this.f8673b;
+        }
+
+        public final void i() {
+            c clone = this.f8674c.clone();
+            if (this.f8674c.f8659f > y0.f8725s) {
+                clone.f8666m = 1;
+            }
+            y0.l(clone);
+        }
+    }
+
+    /* JADX WARN: Removed duplicated region for block: B:10:0x0022 A[Catch: all -> 0x000c, TryCatch #0 {all -> 0x000c, blocks: (B:3:0x0001, B:5:0x0005, B:8:0x001e, B:10:0x0022, B:12:0x002e, B:18:0x000e), top: B:2:0x0001 }] */
+    /* JADX WARN: Removed duplicated region for block: B:12:0x002e A[Catch: all -> 0x000c, TRY_LEAVE, TryCatch #0 {all -> 0x000c, blocks: (B:3:0x0001, B:5:0x0005, B:8:0x001e, B:10:0x0022, B:12:0x002e, B:18:0x000e), top: B:2:0x0001 }] */
+    /* JADX WARN: Removed duplicated region for block: B:16:? A[RETURN, SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:17:0x002b  */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    private com.amap.api.col.s.y2 n() {
+        /*
+            r5 = this;
+            r0 = 0
+            java.lang.ref.SoftReference<com.amap.api.col.s.y2> r1 = com.amap.api.col.s.x2.f8622u     // Catch: java.lang.Throwable -> Lc
+            if (r1 == 0) goto Le
+            java.lang.Object r1 = r1.get()     // Catch: java.lang.Throwable -> Lc
+            if (r1 != 0) goto L1e
+            goto Le
+        Lc:
+            r1 = move-exception
+            goto L38
+        Le:
+            java.lang.ref.SoftReference r1 = new java.lang.ref.SoftReference     // Catch: java.lang.Throwable -> Lc
+            com.amap.api.col.s.y2 r2 = new com.amap.api.col.s.y2     // Catch: java.lang.Throwable -> Lc
+            android.content.Context r3 = com.amap.api.col.s.y0.f8713g     // Catch: java.lang.Throwable -> Lc
+            javax.net.ssl.SSLContext r4 = r5.f8624b     // Catch: java.lang.Throwable -> Lc
+            r2.<init>(r3, r4)     // Catch: java.lang.Throwable -> Lc
+            r1.<init>(r2)     // Catch: java.lang.Throwable -> Lc
+            com.amap.api.col.s.x2.f8622u = r1     // Catch: java.lang.Throwable -> Lc
+        L1e:
+            java.lang.ref.SoftReference<javax.net.ssl.SSLContext> r1 = com.amap.api.col.s.x2.f8621t     // Catch: java.lang.Throwable -> Lc
+            if (r1 == 0) goto L2b
+            java.lang.ref.SoftReference<com.amap.api.col.s.y2> r1 = com.amap.api.col.s.x2.f8622u     // Catch: java.lang.Throwable -> Lc
+            java.lang.Object r1 = r1.get()     // Catch: java.lang.Throwable -> Lc
+            com.amap.api.col.s.y2 r1 = (com.amap.api.col.s.y2) r1     // Catch: java.lang.Throwable -> Lc
+            goto L2c
+        L2b:
+            r1 = r0
+        L2c:
+            if (r1 != 0) goto L37
+            com.amap.api.col.s.y2 r1 = new com.amap.api.col.s.y2     // Catch: java.lang.Throwable -> Lc
+            android.content.Context r2 = com.amap.api.col.s.y0.f8713g     // Catch: java.lang.Throwable -> Lc
+            javax.net.ssl.SSLContext r3 = r5.f8624b     // Catch: java.lang.Throwable -> Lc
+            r1.<init>(r2, r3)     // Catch: java.lang.Throwable -> Lc
+        L37:
+            return r1
+        L38:
+            java.lang.String r2 = "ht"
+            java.lang.String r3 = "gsf"
+            com.amap.api.col.s.g2.o(r1, r2, r3)
+            return r0
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.amap.api.col.s.x2.n():com.amap.api.col.s.y2");
+    }
+
+    /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+    public static class b {
+
+        /* renamed from: a, reason: collision with root package name */
+        public HttpURLConnection f8652a;
+
+        /* renamed from: b, reason: collision with root package name */
+        public int f8653b = this.f8653b;
+
+        /* renamed from: b, reason: collision with root package name */
+        public int f8653b = this.f8653b;
+
+        public b(HttpURLConnection httpURLConnection) {
+            this.f8652a = httpURLConnection;
+        }
+    }
+
+    /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+    private static class d {
+
+        /* renamed from: a, reason: collision with root package name */
+        private Vector<e> f8668a;
+
+        /* renamed from: b, reason: collision with root package name */
+        private volatile e f8669b;
+
+        private d() {
+            this.f8668a = new Vector<>();
+            this.f8669b = new e((byte) 0);
+        }
+
+        public final e a(String str) {
+            if (TextUtils.isEmpty(str)) {
+                return this.f8669b;
+            }
+            byte b6 = 0;
+            for (int i6 = 0; i6 < this.f8668a.size(); i6++) {
+                e eVar = this.f8668a.get(i6);
+                if (eVar != null && eVar.a().equals(str)) {
+                    return eVar;
+                }
+            }
+            e eVar2 = new e(b6);
+            eVar2.c(str);
+            this.f8668a.add(eVar2);
+            return eVar2;
+        }
+
+        /* synthetic */ d(byte b6) {
+            this();
+        }
+    }
+
+    private static int a(Exception exc) {
+        if (exc instanceof SSLHandshakeException) {
+            return o.a.f41398e;
+        }
+        if (exc instanceof SSLKeyException) {
+            return o.a.f41399f;
+        }
+        if (exc instanceof SSLProtocolException) {
+            return o.a.f41400g;
+        }
+        if (exc instanceof SSLPeerUnverifiedException) {
+            return o.a.f41401h;
+        }
+        if (exc instanceof ConnectException) {
+            return 6101;
+        }
+        if (exc instanceof SocketException) {
+            return 6102;
+        }
+        return exc instanceof ConnectTimeoutException ? AMapException.CODE_AMAP_NEARBY_KEY_NOT_BIND : exc instanceof SocketTimeoutException ? 2102 : 0;
+    }
+
+    /* JADX WARN: Removed duplicated region for block: B:101:0x026d  */
+    /* JADX WARN: Removed duplicated region for block: B:105:0x027c  */
+    /* JADX WARN: Removed duplicated region for block: B:106:0x01e1 A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:114:0x01fd A[Catch: all -> 0x01ec, TRY_LEAVE, TryCatch #2 {all -> 0x01ec, blocks: (B:107:0x01e1, B:109:0x01e5, B:112:0x01f9, B:114:0x01fd, B:133:0x01ee), top: B:106:0x01e1 }] */
+    /* JADX WARN: Removed duplicated region for block: B:119:0x0221  */
+    /* JADX WARN: Removed duplicated region for block: B:124:0x0238  */
+    /* JADX WARN: Removed duplicated region for block: B:129:0x0207 A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:12:0x005a  */
+    /* JADX WARN: Removed duplicated region for block: B:135:0x01cd  */
+    /* JADX WARN: Removed duplicated region for block: B:54:0x013c A[Catch: all -> 0x00f1, TryCatch #0 {all -> 0x00f1, blocks: (B:30:0x00c4, B:33:0x00dc, B:35:0x00df, B:37:0x00e3, B:39:0x00e9, B:42:0x00f5, B:45:0x0101, B:47:0x0104, B:51:0x010a, B:52:0x0136, B:54:0x013c, B:56:0x0146, B:57:0x0157, B:59:0x017f, B:61:0x01a0, B:62:0x01a3, B:49:0x0120, B:67:0x0124, B:69:0x0127, B:73:0x012d, B:71:0x0132), top: B:29:0x00c4 }] */
+    /* JADX WARN: Removed duplicated region for block: B:59:0x017f A[Catch: all -> 0x00f1, TryCatch #0 {all -> 0x00f1, blocks: (B:30:0x00c4, B:33:0x00dc, B:35:0x00df, B:37:0x00e3, B:39:0x00e9, B:42:0x00f5, B:45:0x0101, B:47:0x0104, B:51:0x010a, B:52:0x0136, B:54:0x013c, B:56:0x0146, B:57:0x0157, B:59:0x017f, B:61:0x01a0, B:62:0x01a3, B:49:0x0120, B:67:0x0124, B:69:0x0127, B:73:0x012d, B:71:0x0132), top: B:29:0x00c4 }] */
+    /* JADX WARN: Removed duplicated region for block: B:84:0x01ad  */
+    /* JADX WARN: Removed duplicated region for block: B:87:0x01c8  */
+    /* JADX WARN: Removed duplicated region for block: B:89:0x01d0  */
+    /* JADX WARN: Removed duplicated region for block: B:95:0x0245  */
+    /* JADX WARN: Removed duplicated region for block: B:98:0x024b  */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    private com.amap.api.col.s.x2.b b(com.amap.api.col.s.dz r14, boolean r15) throws java.io.IOException, com.amap.api.col.s.bv {
+        /*
+            Method dump skipped, instructions count: 650
+            To view this dump change 'Code comments level' option to 'DEBUG'
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.amap.api.col.s.x2.b(com.amap.api.col.s.dz, boolean):com.amap.api.col.s.x2$b");
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    /* JADX WARN: Removed duplicated region for block: B:103:0x022a A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:110:? A[SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:111:0x0220 A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:116:0x0216 A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:121:0x020c A[EXC_TOP_SPLITTER, SYNTHETIC] */
+    /* JADX WARN: Removed duplicated region for block: B:147:0x018d A[Catch: all -> 0x0031, IOException -> 0x0037, SocketTimeoutException -> 0x003d, ConnectTimeoutException -> 0x0043, TRY_ENTER, TryCatch #20 {SocketTimeoutException -> 0x003d, ConnectTimeoutException -> 0x0043, IOException -> 0x0037, all -> 0x0031, blocks: (B:3:0x0007, B:5:0x0019, B:7:0x0023, B:9:0x0029, B:10:0x0049, B:32:0x00c0, B:147:0x018d, B:148:0x01d9), top: B:2:0x0007 }] */
+    /* JADX WARN: Removed duplicated region for block: B:32:0x00c0 A[Catch: all -> 0x0031, IOException -> 0x0037, SocketTimeoutException -> 0x003d, ConnectTimeoutException -> 0x0043, TRY_ENTER, TRY_LEAVE, TryCatch #20 {SocketTimeoutException -> 0x003d, ConnectTimeoutException -> 0x0043, IOException -> 0x0037, all -> 0x0031, blocks: (B:3:0x0007, B:5:0x0019, B:7:0x0023, B:9:0x0029, B:10:0x0049, B:32:0x00c0, B:147:0x018d, B:148:0x01d9), top: B:2:0x0007 }] */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    private com.amap.api.col.s.b3 c(com.amap.api.col.s.x2.b r15) throws com.amap.api.col.s.bv, java.io.IOException {
+        /*
+            Method dump skipped, instructions count: 563
+            To view this dump change 'Code comments level' option to 'DEBUG'
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.amap.api.col.s.x2.c(com.amap.api.col.s.x2$b):com.amap.api.col.s.b3");
+    }
+
+    private static String f(String str, String str2) {
+        Context context = y0.f8713g;
+        return String.format("platform=Android&sdkversion=%s&product=%s&manufacture=%s&abitype=%s", str, str2, Build.MANUFACTURER, context != null ? j1.d(context) : "");
+    }
+
+    static String h(Map<String, String> map) {
+        if (map == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            if (value == null) {
+                value = "";
+            }
+            if (sb.length() > 0) {
+                sb.append(ContainerUtils.FIELD_DELIMITER);
+            }
+            sb.append(URLEncoder.encode(key));
+            sb.append(ContainerUtils.KEY_VALUE_DELIMITER);
+            sb.append(URLEncoder.encode(value));
+        }
+        return sb.toString();
+    }
+
+    private void j(Map<String, String> map, HttpURLConnection httpURLConnection) {
+        c P;
+        if (map != null) {
+            try {
+                for (String str : map.keySet()) {
+                    httpURLConnection.addRequestProperty(str, map.get(str));
+                }
+            } catch (Throwable th) {
+                d2.e(th, "ht", "adh");
+                return;
+            }
+        }
+        HashMap<String, String> hashMap = u2.f8510d;
+        if (hashMap != null) {
+            for (String str2 : hashMap.keySet()) {
+                httpURLConnection.addRequestProperty(str2, u2.f8510d.get(str2));
+            }
+        }
+        String str3 = "";
+        if (!this.f8634l.contains("/v3/iasdkauth") && !TextUtils.isEmpty(this.f8632j) && y0.K(this.f8632j)) {
+            this.f8636n = true;
+            y0.h O = y0.O(this.f8632j);
+            httpURLConnection.addRequestProperty("lct", String.valueOf(O.f8767a));
+            httpURLConnection.addRequestProperty("lct-info", O.f8768b);
+            httpURLConnection.addRequestProperty("aks", y0.E(y0.d(this.f8632j)));
+            httpURLConnection.addRequestProperty("lct-args", f(y0.x(this.f8632j) != null ? y0.x(this.f8632j).e() : "", this.f8632j));
+        }
+        httpURLConnection.addRequestProperty("csid", this.f8629g);
+        if (l(this.f8641s.f8674c.f8658e)) {
+            f fVar = this.f8641s;
+            if (!TextUtils.isEmpty(fVar.f8674c.f8656c)) {
+                str3 = d1.f(q2.a(fVar.f8674c.f8656c.getBytes(), "YXBtX25ldHdvcmtf".getBytes()));
+                String str4 = fVar.f8674c.f8656c;
+            }
+            if (!TextUtils.isEmpty(str3)) {
+                httpURLConnection.addRequestProperty("sip", str3);
+            }
+            if (y0.f8732z && (P = y0.P()) != null) {
+                httpURLConnection.addRequestProperty("nls", P.b());
+                this.f8641s.f8676e = P;
+            }
+            a L = y0.L();
+            if (L != null) {
+                httpURLConnection.addRequestProperty("nlf", L.b());
+                this.f8641s.f8675d = L;
+            }
+        }
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public boolean l(String str) {
+        if (this.f8633k) {
+            return true;
+        }
+        return (!TextUtils.isEmpty(this.f8635m) && (this.f8635m.contains("rest") || this.f8635m.contains("apilocate"))) || r(str);
+    }
+
+    /* JADX WARN: Code restructure failed: missing block: B:30:0x0038, code lost:
+    
+        if ("1".equals(r1[1]) != false) goto L16;
+     */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    private boolean m(java.util.Map<java.lang.String, java.util.List<java.lang.String>> r7, boolean r8) {
+        /*
+            r6 = this;
+            java.lang.String r0 = "lct"
+            java.lang.String r1 = "#"
+            r2 = 0
+            java.lang.String r3 = "sc"
+            java.lang.Object r3 = r7.get(r3)     // Catch: java.lang.Throwable -> L5c
+            java.util.List r3 = (java.util.List) r3     // Catch: java.lang.Throwable -> L5c
+            if (r3 == 0) goto L5c
+            int r4 = r3.size()     // Catch: java.lang.Throwable -> L5c
+            if (r4 <= 0) goto L5c
+            java.lang.Object r3 = r3.get(r2)     // Catch: java.lang.Throwable -> L5c
+            java.lang.String r3 = (java.lang.String) r3     // Catch: java.lang.Throwable -> L5c
+            boolean r4 = android.text.TextUtils.isEmpty(r3)     // Catch: java.lang.Throwable -> L5c
+            if (r4 != 0) goto L5c
+            boolean r4 = r3.contains(r1)     // Catch: java.lang.Throwable -> L5c
+            r5 = 1
+            if (r4 != 0) goto L29
+            goto L3a
+        L29:
+            java.lang.String[] r1 = r3.split(r1)     // Catch: java.lang.Throwable -> L5c
+            int r3 = r1.length     // Catch: java.lang.Throwable -> L5c
+            if (r3 <= r5) goto L5c
+            java.lang.String r3 = "1"
+            r1 = r1[r5]     // Catch: java.lang.Throwable -> L5c
+            boolean r1 = r3.equals(r1)     // Catch: java.lang.Throwable -> L5c
+            if (r1 == 0) goto L5c
+        L3a:
+            if (r8 == 0) goto L5b
+            boolean r8 = r7.containsKey(r0)     // Catch: java.lang.Throwable -> L5c
+            if (r8 == 0) goto L5a
+            java.lang.Object r7 = r7.get(r0)     // Catch: java.lang.Throwable -> L5c
+            java.util.List r7 = (java.util.List) r7     // Catch: java.lang.Throwable -> L5c
+            if (r7 == 0) goto L5a
+            int r8 = r7.size()     // Catch: java.lang.Throwable -> L5c
+            if (r8 <= 0) goto L5a
+            long r7 = com.amap.api.col.s.y0.a(r7)     // Catch: java.lang.Throwable -> L5c
+            java.lang.String r0 = r6.f8632j     // Catch: java.lang.Throwable -> L5c
+            boolean r2 = com.amap.api.col.s.y0.t(r0, r7)     // Catch: java.lang.Throwable -> L5c
+        L5a:
+            return r2
+        L5b:
+            return r5
+        L5c:
+            return r2
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.amap.api.col.s.x2.m(java.util.Map, boolean):boolean");
+    }
+
+    private static String p(Map<String, List<String>> map) {
+        try {
+            List<String> list = map.get("sc");
+            if (list == null || list.size() <= 0) {
+                return "";
+            }
+            String str = list.get(0);
+            if (TextUtils.isEmpty(str)) {
+                return "";
+            }
+            if (!str.contains("#")) {
+                return str;
+            }
+            String[] split = str.split("#");
+            return split.length > 1 ? split[0] : "";
+        } catch (Throwable unused) {
+            return "";
+        }
+    }
+
+    private static boolean r(String str) {
+        return str.contains("rest") || str.contains("apilocate");
+    }
+
+    private void s(dz dzVar) throws bv {
+        this.f8631i = new d((byte) 0);
+        this.f8637o = dzVar.F();
+        this.f8625c = dzVar.v();
+        this.f8630h = dzVar.A();
+        this.f8633k = dzVar.x();
+        this.f8632j = dzVar.G();
+        this.f8623a = e1.a().i(dzVar.z());
+        String t5 = dzVar.B().b() ? dzVar.t() : dzVar.s();
+        this.f8634l = t5;
+        this.f8634l = w2.a(t5, this.f8632j);
+        this.f8635m = dzVar.r();
+        if ("loc".equals(this.f8632j)) {
+            String s5 = dzVar.s();
+            String t6 = dzVar.t();
+            if (!TextUtils.isEmpty(s5)) {
+                try {
+                    this.f8639q = new URL(s5).getHost();
+                } catch (Exception unused) {
+                }
+            }
+            if (TextUtils.isEmpty(t6)) {
+                return;
+            }
+            try {
+                if (TextUtils.isEmpty(this.f8635m)) {
+                    this.f8638p = new URL(t6).getHost();
+                } else {
+                    this.f8638p = this.f8635m;
+                }
+            } catch (Exception unused2) {
+            }
+        }
+    }
+
+    final b3 d(dz dzVar) throws bv {
+        HttpURLConnection httpURLConnection = null;
+        try {
+            try {
+                try {
+                    try {
+                        try {
+                            try {
+                                try {
+                                    try {
+                                        s(dzVar);
+                                        String g6 = g(this.f8634l, dzVar.o());
+                                        this.f8634l = g6;
+                                        b3 o5 = w2.o(g6, this.f8632j);
+                                        if (o5 != null) {
+                                            this.f8641s.i();
+                                            return o5;
+                                        }
+                                        b b6 = b(dzVar, false);
+                                        httpURLConnection = b6.f8652a;
+                                        this.f8641s.f8673b = SystemClock.elapsedRealtime();
+                                        httpURLConnection.connect();
+                                        this.f8641s.a();
+                                        b3 c6 = c(b6);
+                                        this.f8641s.e(c6);
+                                        try {
+                                            httpURLConnection.disconnect();
+                                        } catch (Throwable th) {
+                                            d2.e(th, "ht", "mgr");
+                                        }
+                                        this.f8641s.i();
+                                        return c6;
+                                    } catch (InterruptedIOException unused) {
+                                        this.f8641s.g(7101);
+                                        this.f8641s.b(7);
+                                        throw new bv(com.amap.api.maps.AMapException.ERROR_UNKNOWN);
+                                    } catch (UnknownHostException unused2) {
+                                        this.f8641s.b(9);
+                                        throw new bv("未知主机 - UnKnowHostException");
+                                    }
+                                } catch (bv e6) {
+                                    if (!e6.i() && e6.g() != 10) {
+                                        this.f8641s.b(e6.f());
+                                    }
+                                    throw e6;
+                                } catch (SocketException e7) {
+                                    this.f8641s.g(a(e7));
+                                    this.f8641s.b(6);
+                                    throw new bv(com.amap.api.maps.AMapException.ERROR_SOCKET);
+                                }
+                            } catch (SSLException e8) {
+                                e8.printStackTrace();
+                                this.f8641s.g(a(e8));
+                                this.f8641s.b(4);
+                                throw new bv("IO 操作异常 - IOException");
+                            } catch (IOException unused3) {
+                                this.f8641s.b(7);
+                                throw new bv("IO 操作异常 - IOException");
+                            }
+                        } catch (MalformedURLException unused4) {
+                            this.f8641s.b(8);
+                            throw new bv("url异常 - MalformedURLException");
+                        } catch (SocketTimeoutException e9) {
+                            this.f8641s.g(a(e9));
+                            this.f8641s.b(2);
+                            throw new bv("socket 连接超时 - SocketTimeoutException");
+                        }
+                    } catch (ConnectTimeoutException e10) {
+                        e10.printStackTrace();
+                        this.f8641s.g(a(e10));
+                        this.f8641s.b(2);
+                        throw new bv("IO 操作异常 - IOException");
+                    }
+                } catch (ConnectException e11) {
+                    this.f8641s.g(a(e11));
+                    this.f8641s.b(6);
+                    throw new bv(com.amap.api.maps.AMapException.ERROR_CONNECTION);
+                }
+            } catch (Throwable th2) {
+                th2.printStackTrace();
+                this.f8641s.b(9);
+                throw new bv(com.amap.api.maps.AMapException.ERROR_UNKNOWN);
+            }
+        } catch (Throwable th3) {
+            if (httpURLConnection != null) {
+                try {
+                    httpURLConnection.disconnect();
+                } catch (Throwable th4) {
+                    d2.e(th4, "ht", "mgr");
+                }
+            }
+            this.f8641s.i();
+            throw th3;
+        }
+    }
+
+    /* JADX WARN: Can't wrap try/catch for region: R(15:8|9|10|11|(8:13|(1:15)|(9:19|20|21|22|23|24|25|(1:27)|28)|44|45|46|47|48)|52|(1:(1:55)(1:56))|57|(1:59)|(10:17|19|20|21|22|23|24|25|(0)|28)|44|45|46|47|48) */
+    /* JADX WARN: Code restructure failed: missing block: B:50:0x00d3, code lost:
+    
+        r0 = move-exception;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:51:0x00d4, code lost:
+    
+        com.amap.api.col.s.d2.e(r0, "ht", "mPt");
+     */
+    /* JADX WARN: Removed duplicated region for block: B:27:0x00a3 A[Catch: all -> 0x0040, bv -> 0x0044, IOException -> 0x0048, SocketTimeoutException -> 0x004c, SocketException -> 0x0050, UnknownHostException -> 0x0054, MalformedURLException -> 0x0058, ConnectTimeoutException -> 0x005c, ConnectException -> 0x0060, SSLException -> 0x0064, InterruptedIOException -> 0x00dd, TryCatch #10 {bv -> 0x0044, InterruptedIOException -> 0x00dd, ConnectException -> 0x0060, MalformedURLException -> 0x0058, SocketException -> 0x0050, SocketTimeoutException -> 0x004c, UnknownHostException -> 0x0054, SSLException -> 0x0064, ConnectTimeoutException -> 0x005c, IOException -> 0x0048, all -> 0x0040, blocks: (B:11:0x0026, B:13:0x003c, B:17:0x0087, B:25:0x009e, B:27:0x00a3, B:28:0x00a6, B:33:0x00b8, B:35:0x00bd, B:36:0x00c0, B:37:0x00c5, B:44:0x00c6, B:52:0x0068, B:55:0x0072, B:57:0x0077, B:59:0x0081), top: B:10:0x0026 }] */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct code enable 'Show inconsistent code' option in preferences
+    */
+    final com.amap.api.col.s.b3 o(com.amap.api.col.s.dz r14) throws com.amap.api.col.s.bv {
+        /*
+            Method dump skipped, instructions count: 500
+            To view this dump change 'Code comments level' option to 'DEBUG'
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.amap.api.col.s.x2.o(com.amap.api.col.s.dz):com.amap.api.col.s.b3");
+    }
+
+    x2() {
+        y0.I();
+        try {
+            this.f8629g = UUID.randomUUID().toString().replaceAll("-", "").toLowerCase();
+        } catch (Throwable th) {
+            d2.e(th, "ht", "ic");
+        }
+    }
+
+    private static String g(String str, Map<String, String> map) {
+        if (!TextUtils.isEmpty(str)) {
+            HashMap<String, String> hashMap = u2.f8511e;
+            if (hashMap != null) {
+                if (map != null) {
+                    map.putAll(hashMap);
+                } else {
+                    map = hashMap;
+                }
+            }
+            if (map != null && map.size() > 0) {
+                int indexOf = str.indexOf("?");
+                if (indexOf >= 0) {
+                    HashMap hashMap2 = new HashMap();
+                    String substring = str.substring(indexOf);
+                    for (Map.Entry<String, String> entry : map.entrySet()) {
+                        String key = entry.getKey();
+                        String value = entry.getValue();
+                        if (value == null) {
+                            value = "";
+                        }
+                        if (!substring.matches(".*[\\?\\&]" + URLEncoder.encode(key) + "=.*")) {
+                            hashMap2.put(key, value);
+                        }
+                    }
+                    map = hashMap2;
+                }
+                if (map.size() == 0) {
+                    return str;
+                }
+                String h6 = h(map);
+                StringBuffer stringBuffer = new StringBuffer();
+                stringBuffer.append(str);
+                if (indexOf >= 0) {
+                    if (!str.endsWith("?") && !str.endsWith(ContainerUtils.FIELD_DELIMITER)) {
+                        stringBuffer.append(ContainerUtils.FIELD_DELIMITER);
+                    }
+                } else {
+                    stringBuffer.append("?");
+                }
+                if (h6 != null) {
+                    stringBuffer.append(h6);
+                }
+                return stringBuffer.toString();
+            }
+            return str;
+        }
+        return str;
+    }
+
+    public static void i() {
+    }
+}

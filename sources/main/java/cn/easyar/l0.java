@@ -1,0 +1,9 @@
+package cn.easyar;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes2.dex */
+public class l0 {
+    public static final int Absolute = 2;
+    public static final int App = 0;
+    public static final int Assets = 1;
+}

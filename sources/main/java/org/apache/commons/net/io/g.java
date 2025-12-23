@@ -1,0 +1,85 @@
+package org.apache.commons.net.io;
+
+import java.io.FilterOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes7.dex */
+public final class g extends FilterOutputStream {
+
+    /* renamed from: a, reason: collision with root package name */
+    private boolean f50853a;
+
+    private void a(int i6) throws IOException {
+        if (i6 == 10) {
+            if (this.f50853a) {
+                ((FilterOutputStream) this).out.write(f.f50851d);
+                this.f50853a = false;
+                return;
+            } else {
+                this.f50853a = false;
+                ((FilterOutputStream) this).out.write(10);
+                return;
+            }
+        }
+        if (i6 == 13) {
+            this.f50853a = true;
+            return;
+        }
+        if (this.f50853a) {
+            ((FilterOutputStream) this).out.write(13);
+            this.f50853a = false;
+        }
+        ((FilterOutputStream) this).out.write(i6);
+    }
+
+    @Override // java.io.FilterOutputStream, java.io.OutputStream, java.io.Closeable, java.lang.AutoCloseable
+    public synchronized void close() throws IOException {
+        if (f.f50849b) {
+            super.close();
+            return;
+        }
+        if (this.f50853a) {
+            ((FilterOutputStream) this).out.write(13);
+        }
+        super.close();
+    }
+
+    @Override // java.io.FilterOutputStream, java.io.OutputStream
+    public synchronized void write(int i6) throws IOException {
+        if (f.f50849b) {
+            ((FilterOutputStream) this).out.write(i6);
+        } else {
+            a(i6);
+        }
+    }
+
+    public g(OutputStream outputStream) {
+        super(outputStream);
+        this.f50853a = false;
+    }
+
+    @Override // java.io.FilterOutputStream, java.io.OutputStream
+    public synchronized void write(byte[] bArr) throws IOException {
+        write(bArr, 0, bArr.length);
+    }
+
+    @Override // java.io.FilterOutputStream, java.io.OutputStream
+    public synchronized void write(byte[] bArr, int i6, int i7) throws IOException {
+        if (f.f50849b) {
+            ((FilterOutputStream) this).out.write(bArr, i6, i7);
+            return;
+        }
+        while (true) {
+            int i8 = i7 - 1;
+            if (i7 <= 0) {
+                return;
+            }
+            int i9 = i6 + 1;
+            a(bArr[i6]);
+            i6 = i9;
+            i7 = i8;
+        }
+    }
+}

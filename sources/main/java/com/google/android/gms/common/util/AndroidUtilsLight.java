@@ -1,0 +1,49 @@
+package com.google.android.gms.common.util;
+
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
+import com.google.android.gms.common.internal.ShowFirstParty;
+import com.google.android.gms.common.wrappers.Wrappers;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+@ShowFirstParty
+@KeepForSdk
+/* loaded from: D:\Downloads\app\classes5.dex */
+public class AndroidUtilsLight {
+    private static volatile int zza = -1;
+
+    @Nullable
+    public static MessageDigest zza(@NonNull String str) {
+        MessageDigest messageDigest;
+        for (int i6 = 0; i6 < 2; i6++) {
+            try {
+                messageDigest = MessageDigest.getInstance(str);
+            } catch (NoSuchAlgorithmException unused) {
+            }
+            if (messageDigest != null) {
+                return messageDigest;
+            }
+        }
+        return null;
+    }
+
+    @Nullable
+    @KeepForSdk
+    @Deprecated
+    public static byte[] getPackageCertificateHashBytes(@NonNull Context context, @NonNull String str) throws PackageManager.NameNotFoundException {
+        MessageDigest zza2;
+        PackageInfo packageInfo = Wrappers.packageManager(context).getPackageInfo(str, 64);
+        Signature[] signatureArr = packageInfo.signatures;
+        if (signatureArr != null && signatureArr.length == 1 && (zza2 = zza("SHA1")) != null) {
+            return zza2.digest(packageInfo.signatures[0].toByteArray());
+        }
+        return null;
+    }
+}

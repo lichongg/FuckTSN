@@ -1,0 +1,21 @@
+package xyz.adscope.common.v2.conn.http;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes9.dex */
+public enum RequestMethod {
+    POST("POST"),
+    GET("GET"),
+    DOWNLOAD("DOWNLOAD"),
+    STREAM("STREAM"),
+    CACHE_IMAGE("CACHE");
+
+    private final String name;
+
+    public String getMethodName() {
+        return this.name;
+    }
+
+    RequestMethod(String str) {
+        this.name = str;
+    }
+}

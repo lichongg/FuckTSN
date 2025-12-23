@@ -1,0 +1,12 @@
+package kotlin.reflect.jvm.internal.impl.resolve;
+
+import kotlin.reflect.jvm.internal.impl.descriptors.f0;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes8.dex */
+public interface q {
+    @Nullable
+    f0 a(@NotNull f0 f0Var);
+}

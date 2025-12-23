@@ -1,0 +1,33 @@
+package androidx.work.impl.diagnostics;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.work.ListenableWorker;
+import androidx.work.Logger;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
+import androidx.work.impl.workers.DiagnosticsWorker;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+/* loaded from: D:\Downloads\app\classes.dex */
+public class DiagnosticsReceiver extends BroadcastReceiver {
+    private static final String TAG = Logger.tagWithPrefix("DiagnosticsRcvr");
+
+    @Override // android.content.BroadcastReceiver
+    public void onReceive(@NonNull Context context, @Nullable Intent intent) {
+        if (intent == null) {
+            return;
+        }
+        Logger.get().debug(TAG, "Requesting diagnostics", new Throwable[0]);
+        try {
+            WorkManager.getInstance(context).enqueue(OneTimeWorkRequest.from((Class<? extends ListenableWorker>) DiagnosticsWorker.class));
+        } catch (IllegalStateException e6) {
+            Logger.get().error(TAG, "WorkManager is not initialized", e6);
+        }
+    }
+}

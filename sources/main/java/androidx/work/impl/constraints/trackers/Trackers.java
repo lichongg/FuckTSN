@@ -1,0 +1,69 @@
+package androidx.work.impl.constraints.trackers;
+
+import android.content.Context;
+import androidx.annotation.NonNull;
+import androidx.annotation.RestrictTo;
+import androidx.annotation.VisibleForTesting;
+import androidx.work.impl.utils.taskexecutor.TaskExecutor;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+/* loaded from: D:\Downloads\app\classes.dex */
+public class Trackers {
+    private static Trackers sInstance;
+    private BatteryChargingTracker mBatteryChargingTracker;
+    private BatteryNotLowTracker mBatteryNotLowTracker;
+    private NetworkStateTracker mNetworkStateTracker;
+    private StorageNotLowTracker mStorageNotLowTracker;
+
+    @NonNull
+    public static synchronized Trackers getInstance(Context context, TaskExecutor taskExecutor) {
+        Trackers trackers;
+        synchronized (Trackers.class) {
+            try {
+                if (sInstance == null) {
+                    sInstance = new Trackers(context, taskExecutor);
+                }
+                trackers = sInstance;
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
+        return trackers;
+    }
+
+    @VisibleForTesting
+    public static synchronized void setInstance(@NonNull Trackers trackers) {
+        synchronized (Trackers.class) {
+            sInstance = trackers;
+        }
+    }
+
+    @NonNull
+    public BatteryChargingTracker getBatteryChargingTracker() {
+        return this.mBatteryChargingTracker;
+    }
+
+    @NonNull
+    public BatteryNotLowTracker getBatteryNotLowTracker() {
+        return this.mBatteryNotLowTracker;
+    }
+
+    @NonNull
+    public NetworkStateTracker getNetworkStateTracker() {
+        return this.mNetworkStateTracker;
+    }
+
+    @NonNull
+    public StorageNotLowTracker getStorageNotLowTracker() {
+        return this.mStorageNotLowTracker;
+    }
+
+    private Trackers(@NonNull Context context, @NonNull TaskExecutor taskExecutor) {
+        Context applicationContext = context.getApplicationContext();
+        this.mBatteryChargingTracker = new BatteryChargingTracker(applicationContext, taskExecutor);
+        this.mBatteryNotLowTracker = new BatteryNotLowTracker(applicationContext, taskExecutor);
+        this.mNetworkStateTracker = new NetworkStateTracker(applicationContext, taskExecutor);
+        this.mStorageNotLowTracker = new StorageNotLowTracker(applicationContext, taskExecutor);
+    }
+}

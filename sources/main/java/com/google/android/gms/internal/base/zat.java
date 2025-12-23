@@ -1,0 +1,18 @@
+package com.google.android.gms.internal.base;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes5.dex */
+public final class zat {
+    private static final zaq zaa;
+    private static volatile zaq zab;
+
+    static {
+        zas zasVar = new zas(null);
+        zaa = zasVar;
+        zab = zasVar;
+    }
+
+    public static zaq zaa() {
+        return zab;
+    }
+}

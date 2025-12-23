@@ -1,0 +1,107 @@
+package androidx.transition;
+
+import android.animation.LayoutTransition;
+import android.view.ViewGroup;
+import androidx.annotation.NonNull;
+import com.umeng.socialize.net.dplus.CommonNetImpl;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes.dex */
+class ViewGroupUtilsApi14 {
+    private static final int LAYOUT_TRANSITION_CHANGING = 4;
+    private static final String TAG = "ViewGroupUtilsApi14";
+    private static Method sCancelMethod;
+    private static boolean sCancelMethodFetched;
+    private static LayoutTransition sEmptyLayoutTransition;
+    private static Field sLayoutSuppressedField;
+    private static boolean sLayoutSuppressedFieldFetched;
+
+    private static void cancelLayoutTransition(LayoutTransition layoutTransition) {
+        if (!sCancelMethodFetched) {
+            try {
+                Method declaredMethod = LayoutTransition.class.getDeclaredMethod(CommonNetImpl.CANCEL, null);
+                sCancelMethod = declaredMethod;
+                declaredMethod.setAccessible(true);
+            } catch (NoSuchMethodException unused) {
+            }
+            sCancelMethodFetched = true;
+        }
+        Method method = sCancelMethod;
+        if (method != null) {
+            try {
+                method.invoke(layoutTransition, null);
+            } catch (IllegalAccessException | InvocationTargetException unused2) {
+            }
+        }
+    }
+
+    static void suppressLayout(@NonNull ViewGroup viewGroup, boolean z5) {
+        boolean z6 = false;
+        if (sEmptyLayoutTransition == null) {
+            LayoutTransition layoutTransition = new LayoutTransition() { // from class: androidx.transition.ViewGroupUtilsApi14.1
+                @Override // android.animation.LayoutTransition
+                public boolean isChangingLayout() {
+                    return true;
+                }
+            };
+            sEmptyLayoutTransition = layoutTransition;
+            layoutTransition.setAnimator(2, null);
+            sEmptyLayoutTransition.setAnimator(0, null);
+            sEmptyLayoutTransition.setAnimator(1, null);
+            sEmptyLayoutTransition.setAnimator(3, null);
+            sEmptyLayoutTransition.setAnimator(4, null);
+        }
+        if (z5) {
+            LayoutTransition layoutTransition2 = viewGroup.getLayoutTransition();
+            if (layoutTransition2 != null) {
+                if (layoutTransition2.isRunning()) {
+                    cancelLayoutTransition(layoutTransition2);
+                }
+                if (layoutTransition2 != sEmptyLayoutTransition) {
+                    viewGroup.setTag(R.id.transition_layout_save, layoutTransition2);
+                }
+            }
+            viewGroup.setLayoutTransition(sEmptyLayoutTransition);
+            return;
+        }
+        viewGroup.setLayoutTransition(null);
+        if (!sLayoutSuppressedFieldFetched) {
+            try {
+                Field declaredField = ViewGroup.class.getDeclaredField("mLayoutSuppressed");
+                sLayoutSuppressedField = declaredField;
+                declaredField.setAccessible(true);
+            } catch (NoSuchFieldException unused) {
+            }
+            sLayoutSuppressedFieldFetched = true;
+        }
+        Field field = sLayoutSuppressedField;
+        if (field != null) {
+            try {
+                boolean z7 = field.getBoolean(viewGroup);
+                if (z7) {
+                    try {
+                        sLayoutSuppressedField.setBoolean(viewGroup, false);
+                    } catch (IllegalAccessException unused2) {
+                    }
+                }
+                z6 = z7;
+            } catch (IllegalAccessException unused3) {
+            }
+        }
+        if (z6) {
+            viewGroup.requestLayout();
+        }
+        int i6 = R.id.transition_layout_save;
+        LayoutTransition layoutTransition3 = (LayoutTransition) viewGroup.getTag(i6);
+        if (layoutTransition3 != null) {
+            viewGroup.setTag(i6, null);
+            viewGroup.setLayoutTransition(layoutTransition3);
+        }
+    }
+
+    private ViewGroupUtilsApi14() {
+    }
+}

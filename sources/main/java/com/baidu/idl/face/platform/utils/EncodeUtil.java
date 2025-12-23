@@ -1,0 +1,44 @@
+package com.baidu.idl.face.platform.utils;
+
+import android.text.TextUtils;
+import android.util.Base64;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes2.dex */
+public class EncodeUtil {
+    public static String base64Encode(byte[] bArr) {
+        return Base64.encodeToString(bArr, 2);
+    }
+
+    public static String aesDecryptByBytes(byte[] bArr, String str) throws Exception {
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(2, new SecretKeySpec(base64Decode(str), "AES"));
+        return new String(cipher.doFinal(bArr));
+    }
+
+    public static byte[] aesEncryptToBytes(String str, String str2) throws Exception {
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(1, new SecretKeySpec(base64Decode(str2), "AES"));
+        return cipher.doFinal(str.getBytes("utf-8"));
+    }
+
+    public static String aesDecrypt(String str, String str2) throws Exception {
+        if (TextUtils.isEmpty(str)) {
+            return null;
+        }
+        return aesDecryptByBytes(base64Decode(str), str2);
+    }
+
+    public static String aesEncrypt(String str, String str2) throws Exception {
+        return base64Encode(aesEncryptToBytes(str, str2));
+    }
+
+    public static byte[] base64Decode(String str) throws Exception {
+        if (TextUtils.isEmpty(str)) {
+            return null;
+        }
+        return Base64.decode(str, 2);
+    }
+}

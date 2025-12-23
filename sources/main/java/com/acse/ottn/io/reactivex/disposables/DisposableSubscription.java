@@ -1,0 +1,23 @@
+package com.acse.ottn.io.reactivex.disposables;
+
+import rx.m;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes2.dex */
+public class DisposableSubscription implements m {
+    Disposable disposable;
+
+    @Override // rx.m
+    public boolean isUnsubscribed() {
+        return this.disposable.isDisposed();
+    }
+
+    @Override // rx.m
+    public void unsubscribe() {
+        this.disposable.dispose();
+    }
+
+    public DisposableSubscription(Disposable disposable) {
+        this.disposable = disposable;
+    }
+}

@@ -1,0 +1,14 @@
+package com.google.android.odml.image;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes5.dex */
+abstract class zzh {
+    abstract zzh zza(int i6);
+
+    abstract zzh zzb(int i6);
+
+    abstract ImageProperties zzc();
+
+    zzh() {
+    }
+}

@@ -1,0 +1,18 @@
+package com.google.android.datatransport.runtime.dagger.multibindings;
+
+import com.google.android.datatransport.runtime.dagger.MapKey;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+@Target({ElementType.METHOD})
+@MapKey
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+/* loaded from: D:\Downloads\app\classes4.dex */
+public @interface LongKey {
+    long value();
+}

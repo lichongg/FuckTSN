@@ -1,0 +1,31 @@
+package io.reactivex.internal.operators.single;
+
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.SingleOperator;
+import io.reactivex.SingleSource;
+import io.reactivex.exceptions.Exceptions;
+import io.reactivex.internal.disposables.EmptyDisposable;
+import io.reactivex.internal.functions.ObjectHelper;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes8.dex */
+public final class SingleLift<T, R> extends Single<R> {
+    final SingleOperator<? extends R, ? super T> onLift;
+    final SingleSource<T> source;
+
+    @Override // io.reactivex.Single
+    protected void subscribeActual(SingleObserver<? super R> singleObserver) {
+        try {
+            this.source.subscribe((SingleObserver) ObjectHelper.requireNonNull(this.onLift.apply(singleObserver), "The onLift returned a null SingleObserver"));
+        } catch (Throwable th) {
+            Exceptions.throwIfFatal(th);
+            EmptyDisposable.error(th, singleObserver);
+        }
+    }
+
+    public SingleLift(SingleSource<T> singleSource, SingleOperator<? extends R, ? super T> singleOperator) {
+        this.source = singleSource;
+        this.onLift = singleOperator;
+    }
+}

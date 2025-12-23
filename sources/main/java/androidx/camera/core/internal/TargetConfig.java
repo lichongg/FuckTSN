@@ -1,0 +1,43 @@
+package androidx.camera.core.internal;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.annotation.RestrictTo;
+import androidx.camera.core.impl.Config;
+import androidx.camera.core.impl.ReadableConfig;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+@RequiresApi(21)
+/* loaded from: D:\Downloads\app\classes.dex */
+public interface TargetConfig<T> extends ReadableConfig {
+
+    @NonNull
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public static final Config.Option<String> OPTION_TARGET_NAME = Config.Option.create("camerax.core.target.name", String.class);
+
+    @NonNull
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public static final Config.Option<Class<?>> OPTION_TARGET_CLASS = Config.Option.create("camerax.core.target.class", Class.class);
+
+    /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+    public interface Builder<T, B> {
+        @NonNull
+        B setTargetClass(@NonNull Class<T> cls);
+
+        @NonNull
+        B setTargetName(@NonNull String str);
+    }
+
+    @NonNull
+    Class<T> getTargetClass();
+
+    @Nullable
+    Class<T> getTargetClass(@Nullable Class<T> cls);
+
+    @NonNull
+    String getTargetName();
+
+    @Nullable
+    String getTargetName(@Nullable String str);
+}

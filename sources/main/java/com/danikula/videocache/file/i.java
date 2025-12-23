@@ -1,0 +1,12 @@
+package com.danikula.videocache.file;
+
+import java.io.File;
+import java.io.IOException;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes4.dex */
+public class i implements a {
+    @Override // com.danikula.videocache.file.a
+    public void a(File file) throws IOException {
+    }
+}

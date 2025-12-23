@@ -1,0 +1,261 @@
+package com.bxkj.student.home.physicaltest.monitor.record;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.widget.Button;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import cn.bluemobi.dylan.base.BaseActivity;
+import cn.bluemobi.dylan.base.adapter.common.ViewHolder;
+import cn.bluemobi.dylan.base.adapter.common.recyclerview.CommonAdapter;
+import cn.bluemobi.dylan.base.adapter.common.recyclerview.EmptyRecyclerView;
+import cn.bluemobi.dylan.base.view.iOSTwoButtonDialog;
+import cn.bluemobi.dylan.http.Http;
+import cn.bluemobi.dylan.http.HttpCallBack;
+import cn.bluemobi.dylan.http.JsonParse;
+import com.bxkj.base.user.LoginUser;
+import com.bxkj.student.R;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import m2.h;
+import n2.e;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes3.dex */
+public class MonitorRecordListActivity extends BaseActivity {
+    private SmartRefreshLayout W;
+    private EmptyRecyclerView X;
+    private List<Map<String, Object>> Y = new ArrayList();
+    private int Z = 1;
+
+    /* renamed from: a0, reason: collision with root package name */
+    private int f17979a0 = 1;
+
+    /* renamed from: b0, reason: collision with root package name */
+    private int f17980b0 = 10;
+
+    /* renamed from: c0, reason: collision with root package name */
+    private CommonAdapter<Map<String, Object>> f17981c0;
+
+    /* renamed from: k0, reason: collision with root package name */
+    private long f17982k0;
+
+    /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+    class a implements e {
+        a() {
+        }
+
+        @Override // n2.d
+        public void a(h refreshlayout) {
+            MonitorRecordListActivity.this.f17979a0 = 1;
+            MonitorRecordListActivity.this.s0();
+        }
+
+        @Override // n2.b
+        public void f(h refreshlayout) {
+            int i6 = MonitorRecordListActivity.this.Z / MonitorRecordListActivity.this.f17980b0;
+            int i7 = MonitorRecordListActivity.this.f17979a0;
+            if (MonitorRecordListActivity.this.Z % MonitorRecordListActivity.this.f17980b0 != 0) {
+                i6++;
+            }
+            if (i7 >= i6) {
+                MonitorRecordListActivity.this.W.Q();
+                MonitorRecordListActivity.this.g0("没有了");
+            } else {
+                MonitorRecordListActivity.this.f17979a0++;
+                MonitorRecordListActivity.this.s0();
+            }
+        }
+    }
+
+    /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+    class b extends CommonAdapter<Map<String, Object>> {
+
+        /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+        class a implements View.OnClickListener {
+
+            /* renamed from: a, reason: collision with root package name */
+            final /* synthetic */ Map f17985a;
+
+            /* renamed from: b, reason: collision with root package name */
+            final /* synthetic */ ViewHolder f17986b;
+
+            a(final Map val$stringObjectMap, final ViewHolder val$holder) {
+                this.f17985a = val$stringObjectMap;
+                this.f17986b = val$holder;
+            }
+
+            @Override // android.view.View.OnClickListener
+            public void onClick(View v5) {
+                MonitorRecordListActivity.this.startActivity(new Intent(((CommonAdapter) b.this).f1138e, (Class<?>) MonitorRecordDetailActivity.class).putExtra("id", JsonParse.getString(this.f17985a, "id")).putExtra("position", this.f17986b.f()));
+            }
+        }
+
+        /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+        /* renamed from: com.bxkj.student.home.physicaltest.monitor.record.MonitorRecordListActivity$b$b, reason: collision with other inner class name */
+        class ViewOnClickListenerC0209b implements View.OnClickListener {
+
+            /* renamed from: a, reason: collision with root package name */
+            final /* synthetic */ Map f17988a;
+
+            /* renamed from: b, reason: collision with root package name */
+            final /* synthetic */ ViewHolder f17989b;
+
+            ViewOnClickListenerC0209b(final Map val$stringObjectMap, final ViewHolder val$holder) {
+                this.f17988a = val$stringObjectMap;
+                this.f17989b = val$holder;
+            }
+
+            @Override // android.view.View.OnClickListener
+            public void onClick(View v5) {
+                b bVar = b.this;
+                MonitorRecordListActivity.this.t0(((CommonAdapter) bVar).f1138e, JsonParse.getString(this.f17988a, "id"), this.f17989b.f());
+            }
+        }
+
+        b(Context context, int layoutId, List datas) {
+            super(context, layoutId, datas);
+        }
+
+        @Override // cn.bluemobi.dylan.base.adapter.common.recyclerview.CommonAdapter
+        /* renamed from: o, reason: merged with bridge method [inline-methods] */
+        public void c(final ViewHolder holder, final Map<String, Object> stringObjectMap) {
+            holder.J(2131298922, JsonParse.getString(stringObjectMap, "scheduleName"));
+            holder.J(R.id.tv_reserve_time, JsonParse.getString(stringObjectMap, "appointmentBeginTime") + com.snail.antifake.deviceid.e.f37542d + JsonParse.getString(stringObjectMap, "appointmentEndTime"));
+            holder.J(R.id.tv_measure_time, JsonParse.getString(stringObjectMap, "meaBeginTime") + com.snail.antifake.deviceid.e.f37542d + JsonParse.getString(stringObjectMap, "meaEndTime"));
+            holder.J(R.id.tv_femail, "班级数:" + JsonParse.getString(stringObjectMap, "appliedClasses") + "/" + JsonParse.getInt(stringObjectMap, "appClassAmount"));
+            holder.J(2131299171, JsonParse.getString(stringObjectMap, "appointmentType").equals("2") ? "个人预约" : "班长预约");
+            holder.w(R.id.bt_detail, new a(stringObjectMap, holder));
+            Button button = (Button) holder.h(R.id.bt_reservation);
+            try {
+                if (MonitorRecordListActivity.this.f17982k0 > new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.sss").parse(JsonParse.getString(stringObjectMap, "meaBeginTime")).getTime()) {
+                    button.setText("体测已开始");
+                    button.setEnabled(false);
+                } else {
+                    button.setEnabled(true);
+                    button.setText("取消预约");
+                }
+            } catch (ParseException e6) {
+                e6.printStackTrace();
+            }
+            button.setOnClickListener(new ViewOnClickListenerC0209b(stringObjectMap, holder));
+        }
+    }
+
+    /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+    class c extends HttpCallBack {
+        c() {
+        }
+
+        @Override // cn.bluemobi.dylan.http.HttpCallBack, cn.bluemobi.dylan.http.HttpResponse
+        public void netOnFinish() {
+            MonitorRecordListActivity.this.W.Y();
+            MonitorRecordListActivity.this.W.Q();
+        }
+
+        @Override // cn.bluemobi.dylan.http.HttpResponse
+        public void netOnSuccess(Map<String, Object> data) {
+            MonitorRecordListActivity.this.f17982k0 = Long.parseLong(JsonParse.getString(data, "currentTime"));
+            MonitorRecordListActivity.this.Y = (List) data.get("meaScheduleList");
+            MonitorRecordListActivity.this.f17981c0.g(MonitorRecordListActivity.this.Y);
+        }
+    }
+
+    /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+    class d implements iOSTwoButtonDialog.RightButtonOnClick {
+
+        /* renamed from: a, reason: collision with root package name */
+        final /* synthetic */ Context f17992a;
+
+        /* renamed from: b, reason: collision with root package name */
+        final /* synthetic */ String f17993b;
+
+        /* renamed from: c, reason: collision with root package name */
+        final /* synthetic */ int f17994c;
+
+        /* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+        class a extends HttpCallBack {
+            a() {
+            }
+
+            @Override // cn.bluemobi.dylan.http.HttpResponse
+            public void netOnSuccess(Map<String, Object> data) {
+                MonitorRecordListActivity.this.g0("取消预约成功");
+                MonitorRecordListActivity.this.f17981c0.d().remove(MonitorRecordListActivity.this.f17981c0.getItem(d.this.f17994c));
+                MonitorRecordListActivity.this.f17981c0.notifyItemRemoved(d.this.f17994c);
+                Activity activity = cn.bluemobi.dylan.base.utils.a.n().getActivity(MonitorRecordDetailActivity.class);
+                if (activity != null) {
+                    activity.finish();
+                }
+            }
+        }
+
+        d(final Context val$mContext, final String val$id, final int val$position) {
+            this.f17992a = val$mContext;
+            this.f17993b = val$id;
+            this.f17994c = val$position;
+        }
+
+        @Override // cn.bluemobi.dylan.base.view.iOSTwoButtonDialog.RightButtonOnClick
+        public void buttonRightOnClick() {
+            Http.with(this.f17992a).setObservable(((e0.a) Http.getApiService(e0.a.class)).M0(this.f17993b, LoginUser.getLoginUser().getUserId())).setDataListener(new a());
+        }
+    }
+
+    /* JADX INFO: Access modifiers changed from: private */
+    public void s0() {
+        Http.with(this.T).setObservable(((e0.a) Http.getApiService(e0.a.class)).q0(LoginUser.getLoginUser().getUserId(), "1", this.f17979a0, this.f17980b0)).setDataListener(new c());
+    }
+
+    @Override // cn.bluemobi.dylan.base.BaseActivity
+    public void S() {
+        this.W.D(new a());
+        this.X.setLayoutManager(new LinearLayoutManager(this.T));
+        LayoutAnimationController layoutAnimationController = new LayoutAnimationController(AnimationUtils.loadAnimation(this, 2130772096));
+        layoutAnimationController.setOrder(0);
+        this.X.setLayoutAnimation(layoutAnimationController);
+        b bVar = new b(this.T, R.layout.item_for_reserve_list, this.Y);
+        this.f17981c0 = bVar;
+        this.X.setAdapter(bVar);
+        this.W.h0(true);
+        this.W.v(false);
+        this.W.F();
+        this.X.setEmptyView(findViewById(2131298892));
+    }
+
+    @Override // cn.bluemobi.dylan.base.BaseActivity
+    public void T() {
+        setTitle("我的预约体测列表");
+    }
+
+    public void t0(final Context mContext, final String id, final int position) {
+        new iOSTwoButtonDialog(mContext).setTitle("提示").setMessage("确定要取消预约吗？").setRightButtonOnClickListener(new d(mContext, id, position)).show();
+    }
+
+    @Override // cn.bluemobi.dylan.base.BaseActivity
+    protected int O() {
+        return 2131492999;
+    }
+
+    @Override // cn.bluemobi.dylan.base.BaseActivity
+    public void U(Bundle savedInstanceState) {
+        this.W = (SmartRefreshLayout) findViewById(2131298352);
+        this.X = (EmptyRecyclerView) findViewById(2131298351);
+    }
+
+    @Override // cn.bluemobi.dylan.base.BaseActivity
+    public void M() {
+    }
+
+    @Override // android.view.View.OnClickListener
+    public void onClick(View v5) {
+    }
+}

@@ -1,0 +1,105 @@
+package com.pansoul.fucktsn.hooks;
+
+import java.io.File;
+
+import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.callbacks.XC_LoadPackage;
+
+public class UniversalHook extends BaseHook {
+
+    // 缓存Root检测关键词，避免重复创建
+    private static final String[] ROOT_KEYWORDS = {"/su", "magisk", "superuser.apk", "frida-server"};
+
+    public UniversalHook() {
+        super("通用检测绕过");
+    }
+
+    @Override
+    protected void hook(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
+        // 注意: Settings.Secure.getInt() 的 Hook 已移至 DeveloperOptionsHook，避免重复
+        hookFileExists(lpparam);
+        hookRuntimeExec(lpparam);
+    }
+
+    private void hookFileExists(XC_LoadPackage.LoadPackageParam lpparam) {
+        try {
+            log("正在Hook File.exists() - Root文件检测");
+            XposedHelpers.findAndHookMethod(
+                    File.class,
+                    "exists",
+                    new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            File file = (File) param.thisObject;
+                            String path = file.getAbsolutePath();
+                            
+                            // 性能优化：快速跳过明显安全的路径
+                            if (path.startsWith("/data/user/") || 
+                                path.startsWith("/storage/emulated/") ||
+                                path.startsWith("/data/data/")) {
+                                return;
+                            }
+                            
+                            // 性能优化：统一转小写后检测，避免多次字符串操作
+                            String lowerPath = path.toLowerCase();
+                            for (String keyword : ROOT_KEYWORDS) {
+                                if (lowerPath.contains(keyword)) {
+                                    log("[拦截] Root文件检测: " + path + " -> 返回false");
+                                    param.setResult(false);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+            );
+            log("文件检测Hook完成");
+        } catch (Throwable t) {
+            log("文件检测Hook失败: " + t.getMessage());
+        }
+    }
+
+    private void hookRuntimeExec(XC_LoadPackage.LoadPackageParam lpparam) {
+        try {
+            log("正在Hook Runtime.exec() - 命令执行检测");
+            XposedHelpers.findAndHookMethod(
+                    Runtime.class,
+                    "exec",
+                    String.class,
+                    new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            String cmd = (String) param.args[0];
+                            if (cmd != null && (cmd.contains("su") || cmd.contains("which su") || cmd.contains("busybox"))) {
+                                log("[拦截] 危险命令: " + cmd + " -> 抛出异常");
+                                throw new Exception("Command not found");
+                            }
+                        }
+                    }
+            );
+            
+            XposedHelpers.findAndHookMethod(
+                    Runtime.class,
+                    "exec",
+                    String[].class,
+                    new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            String[] cmds = (String[]) param.args[0];
+                            if (cmds != null && cmds.length > 0) {
+                                String cmd = String.join(" ", cmds);
+                                if (cmd.contains("su") || cmd.contains("which") || cmd.contains("busybox")) {
+                                    log("[拦截] 危险命令数组: " + cmd + " -> 抛出异常");
+                                    throw new Exception("Command not found");
+                                }
+                            }
+                        }
+                    }
+            );
+            log("命令执行Hook完成");
+        } catch (Throwable t) {
+            log("命令执行Hook失败: " + t.getMessage());
+        }
+    }
+}
+

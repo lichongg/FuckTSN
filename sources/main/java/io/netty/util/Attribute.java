@@ -1,0 +1,23 @@
+package io.netty.util;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes7.dex */
+public interface Attribute<T> {
+    boolean compareAndSet(T t5, T t6);
+
+    T get();
+
+    @Deprecated
+    T getAndRemove();
+
+    T getAndSet(T t5);
+
+    AttributeKey<T> key();
+
+    @Deprecated
+    void remove();
+
+    void set(T t5);
+
+    T setIfAbsent(T t5);
+}

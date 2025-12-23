@@ -1,0 +1,14 @@
+package com.umeng.commonsdk.internal.utils;
+
+import android.content.Context;
+import com.umeng.commonsdk.config.FieldManager;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes7.dex */
+public class ApplicationLayerUtilAgent {
+    public static void wifiChange(Context context) {
+        if (FieldManager.b()) {
+            a.b(context);
+        }
+    }
+}

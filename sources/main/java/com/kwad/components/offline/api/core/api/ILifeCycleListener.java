@@ -1,0 +1,27 @@
+package com.kwad.components.offline.api.core.api;
+
+import android.app.Activity;
+import android.os.Bundle;
+import androidx.annotation.Keep;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes6.dex */
+public interface ILifeCycleListener {
+    @Keep
+    void onActivityCreated(Activity activity, Bundle bundle);
+
+    @Keep
+    void onActivityDestroyed(Activity activity);
+
+    @Keep
+    void onActivityPaused(Activity activity);
+
+    @Keep
+    void onActivityResumed(Activity activity);
+
+    @Keep
+    void onBackToBackground();
+
+    @Keep
+    void onBackToForeground();
+}

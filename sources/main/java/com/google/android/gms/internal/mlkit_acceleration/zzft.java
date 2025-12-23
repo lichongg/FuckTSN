@@ -1,0 +1,73 @@
+package com.google.android.gms.internal.mlkit_acceleration;
+
+import com.huawei.hms.framework.common.ContainerUtils;
+import java.util.Map;
+
+/* compiled from: r8-map-id-90f57856855cc25dcb99430ee461a8d254046ac77d3f49675e58b81fe049f342 */
+/* loaded from: D:\Downloads\app\classes5.dex */
+final class zzft implements Map.Entry, Comparable {
+    final /* synthetic */ zzfz zza;
+    private final Comparable zzb;
+    private Object zzc;
+
+    @Override // java.util.Map.Entry
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Map.Entry)) {
+            return false;
+        }
+        Map.Entry entry = (Map.Entry) obj;
+        return zzb(this.zzb, entry.getKey()) && zzb(this.zzc, entry.getValue());
+    }
+
+    zzft(zzfz zzfzVar, Comparable comparable, Object obj) {
+        this.zza = zzfzVar;
+        this.zzb = comparable;
+        this.zzc = obj;
+    }
+
+    private static final boolean zzb(Object obj, Object obj2) {
+        return obj == null ? obj2 == null : obj.equals(obj2);
+    }
+
+    @Override // java.lang.Comparable
+    public final /* bridge */ /* synthetic */ int compareTo(Object obj) {
+        return this.zzb.compareTo(((zzft) obj).zzb);
+    }
+
+    @Override // java.util.Map.Entry
+    public final /* synthetic */ Object getKey() {
+        return this.zzb;
+    }
+
+    @Override // java.util.Map.Entry
+    public final Object getValue() {
+        return this.zzc;
+    }
+
+    @Override // java.util.Map.Entry
+    public final int hashCode() {
+        Comparable comparable = this.zzb;
+        int hashCode = comparable == null ? 0 : comparable.hashCode();
+        Object obj = this.zzc;
+        return hashCode ^ (obj != null ? obj.hashCode() : 0);
+    }
+
+    @Override // java.util.Map.Entry
+    public final Object setValue(Object obj) {
+        this.zza.zzn();
+        Object obj2 = this.zzc;
+        this.zzc = obj;
+        return obj2;
+    }
+
+    public final String toString() {
+        return String.valueOf(this.zzb) + ContainerUtils.KEY_VALUE_DELIMITER + String.valueOf(this.zzc);
+    }
+
+    public final Comparable zza() {
+        return this.zzb;
+    }
+}
