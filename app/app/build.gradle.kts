@@ -10,8 +10,8 @@ android {
         applicationId = "com.pansoul.fucktsn"
         minSdk = 29
         targetSdk = 36
-        versionCode = 200179
-        versionName = "2.0.17-Beta2"
+        versionCode = 20180
+        versionName = "2.0.18"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
