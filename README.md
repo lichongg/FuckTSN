@@ -183,7 +183,7 @@ Xposed 模块只要求能被系统安装，LSPosed 认的是包名 + `xposedmodu
 1. 安装 `dist/FuckTSN-2.0.25.apk`；
 2. LSPosed 中启用模块；
 3. 作用域勾选 `com.bxkj.student`；
-4. **把体适能从 Magisk DenyList 移出**（DenyList 会拦住 Zygote 注入）；
+4. **把体适能从 Magisk DenyList 移出**（DenyList 会拦住 Zygote 注入）【如使用 KSU 则将体适能移出注入白名单即可】，如无可跳过；
 5. **删掉 `/data/local/tmp/frida-server`**（`rp1.a()` 就查这个路径，文件名不改必命中）；
 6. 强制停止体适能，重新打开。
 
