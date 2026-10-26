@@ -1,4 +1,4 @@
-# FuckTSN 2.0.25（社区适配版）
+# FuckTSN 2.0.25
 
 > 基于 [pansoul1/FuckTSN](https://github.com/pansoul1/FuckTSN) v2.0.18 源码，适配体适能 **2.0.25**（SecShell 加固）的 Xposed 模块。
 > 本仓库 = 上游基线 + [PR#2](https://github.com/pansoul1/FuckTSN/pull/2) 的 2.0.25 适配 + 可复现的构建/签名流水线。
